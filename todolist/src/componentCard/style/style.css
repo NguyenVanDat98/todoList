@@ -1,0 +1,39 @@
+.taskItem {
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 170px;
+    line-height: 1.4rem;
+  }
+  .header {
+    width: 300px;
+  }
+  .header label {
+    width: 80px;
+
+  }
+  .header textarea {
+    flex-grow: 1;
+  }
+  .taskItem button {
+    width: 50%;
+  }
+  .main {
+    justify-content: space-around;
+  }
+  .done {
+    color: red;
+    font-weight: 800;
+  }
+  .doning {
+    color: blue;
+    font-weight: 800;
+
+  }
+  .start {
+    color: green;
+    font-weight: 800;
+
+  }
+  a:hover{
+    text-decoration: none;
+  }
