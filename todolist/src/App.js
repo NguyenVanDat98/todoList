@@ -11,7 +11,7 @@ function App() {
       <div className="header">
        <div className="itemInput"> <label>Title : </label> <input id="title" type="text" /></div>
        <div className="itemInput"> <label>Name : </label> <input id="title" type="text" /></div>       
-       <div className="itemInput"> <label>MESSEGE : </label> <textarea rows="4" name="comment" /></div>
+       <div className="itemInput"> <label>desscription : </label> <textarea rows="4" name="comment" /></div>
 
        <button id="addNew">Add</button>
         
