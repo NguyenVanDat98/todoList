@@ -2,26 +2,34 @@ import React from "react";
 import Testa from "./componentCard/Test";
 import './componentCard/style/style.css'
 import add from "./componentCard/data"
+import Sidebar from "./componentCard/sidebar/Sidebar";
 
 
+function eventButton(){
+  add().filter((e)=>{
+    e.title ==="New"?
+  } )
+}
 
-function App() {
+function App(props) {
+ 
+  // let data = getData("Datalists")
   return (
-    <div className="d-flex wrap w-100 ">
-      <div className="header">
-       <div className="itemInput"> <label>Title : </label> <input id="title" type="text" /></div>
-       <div className="itemInput"> <label>Name : </label> <input id="title" type="text" /></div>       
-       <div className="itemInput"> <label>desscription : </label> <textarea rows="4" name="comment" /></div>
-
-       <button id="addNew">Add</button>
-        
+    <div className="d-flex wrap w-100">
+      <div className="sidebarList">
+        <Sidebar title={"Sort New"}/>
+        <Sidebar title={"Sort Done"}/>
+        <Sidebar title={"Sort Doing"}/>
+        <Sidebar title={"Sort New"}/>
       </div>
-      <div className="main d-flex flex-wrap">     
-      {        
-      add().map(arr=>{
-        return <Testa tit={arr.title} mess={arr.mess} name={arr.name}/>        
-      })
-      }
+
+      <div id="list" className="main mt-3 flex-wrap" style={{display :"flex"}}>
+        {
+          
+          add().map(arr => 
+            <Testa props={props.ii}  tit={arr.title} mess={arr.mess} name={arr.name} />         
+          )
+        }
       </div>
     </div>
   );
