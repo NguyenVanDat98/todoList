@@ -1,0 +1,11 @@
+.side{
+    width: 250px;
+    /* height: 100vh; */
+}
+
+.side >button{
+    height: 50px;
+    width: 100%;
+    border: none;
+    
+}

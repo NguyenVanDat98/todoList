@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header {
+    height: 60px;
+    position: relative;
+    align-items: center;
+   padding-right: 20px;
+   padding-left: 20px;
+   display: flex;
+}
+.search input{
+    height: 50px;
+    width:300px;
+    margin: 0 20px ;
+    border: none;
+    background-color: rgb(6, 73, 197);
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: white;
+    
+    font-size: 20px;
+}
+.header button {
+    height: 50px;
+    width: 70px;
+    border-radius: 10px;
+    border: none;
+}
+.header button:nth-child(1){
+    width: 200px;
+}
+.header button:nth-child(1):hover{
+background-color: aquamarine;
+}
+.formHeader {
+
+    position: absolute;
+    
+    align-items: center;
+    top: 100px;
+    right: 30%;
+    left: 30%;
+    z-index: 100;
+    min-width: 300px;
+    height: max-content;
+    border-radius: 10px;
+    background-color: rgba(145, 145, 145, 0.815);
+
+}
+.item-input{
+    padding-top:  10px;
+    display: flex;
+    align-items: center;
+  
+    margin: 5px 20px;
+}
+.formHeader label{
+    align-items: center;
+font-weight: bold;
+    width: 120px;
+}
+.item-input input {
+    border-radius: 5px;
+    border: none;
+    font-size: 18px;
+    padding: 5px 5px;
+    flex-grow: 1;
+}
+
+.addNew button{
+    padding: 5px;
+    font-weight: bold;
+    display: block;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
