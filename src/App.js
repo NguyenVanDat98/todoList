@@ -4,8 +4,7 @@ import "./App.css"
 import './component/style/style.css'
 import add from "./component/data"
 import Sidebar from "./component/sidebar/Sidebar";
-import ListNext from "./component/ListNextpage/ListNext";
-import { logDOM } from "@testing-library/react";
+
 
   const arr=[];
   const aii=[];
