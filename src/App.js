@@ -5,12 +5,6 @@ import add from "./componentCard/data"
 import Sidebar from "./componentCard/sidebar/Sidebar";
 
 
-// function eventButton(){
-//   add().filter((e)=>{
-//     e.title ==="New"?
-//   } )
-// }
-
 function App(props) {
  
   // let data = getData("Datalists")
