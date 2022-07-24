@@ -17,12 +17,12 @@ const Header = props => {
 
         }else {
             settus("none")
-            document.getElementById("list").style.display ="flex"
+            document.getElementById("list").style.display ="grid"
         }
     }
     
     return (
-        <div  className='header w-100 bg-primary justify-content-between'>
+        <div  className='header  bg-primary justify-content-between'>
             <FormHeader sty={tus}/>
             <div className="home">
                 <button onClick={btn}  type="button">Home</button>

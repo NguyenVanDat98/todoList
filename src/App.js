@@ -17,7 +17,7 @@ function App(props) {
         <Sidebar title={"Sort New"}/>
       </div>
 
-      <div id="list" className="main mt-3 flex-wrap" style={{display :"flex"}}>
+      <div id="list" className="main mt-3 flex-wrap" style={{display :"grid"}}>
         {
           
           add().map(arr => 

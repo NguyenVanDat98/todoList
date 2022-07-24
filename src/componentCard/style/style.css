@@ -2,10 +2,11 @@
     border: 2px solid black;
     border-radius: 5px;
     width: 200px;
+    margin-left: 20px;
     line-height: 1.4rem;
   }
   .header {
-    width: 300px;
+    width: 100%;
   }
   .header label {
     width: 80px;
@@ -21,7 +22,12 @@
     margin: 0 auto;
   }
   .main {
-    justify-content: space-evenly;
+    flex-grow: 1;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(3,1fr);
+    margin: 30px auto;
+    row-gap: 20px;
+    justify-items: center;
   }
   .done {
     color: red;
@@ -44,7 +50,6 @@
     width: 100%;
     height: 56px;
     display: block;
-     /* overflow-wrap: break-word; */
     text-overflow: ellipsis; 
     overflow: hidden;   
     line-height: 18px;
@@ -54,5 +59,37 @@
   }
   .taskItem>div{
     border-top: 1px solid black;
+  }
+  @media (min-width:480px) {
+    .main{
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(12,1fr);
+    }
+   
+  }
+  @media (min-width:720px) {
+    .main{
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(6,1fr);
+    }
+  }
+  @media (min-width:960px) {
+    .main{
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(4,1fr);
+    }
+  }
+  @media (min-width:1200px) {
+    .main{
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(3,1fr);
+    }
+  }
+  @media (min-width:1400px) {
+    .main{
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: repeat(3,1fr);
+    }
+    
   }
  
