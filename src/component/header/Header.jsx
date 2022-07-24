@@ -7,17 +7,14 @@ import { useState } from 'react';
 
 const Header = props => {
     const [tus , settus] =  useState("none"); 
-    
-   
-
     function btn (){
         if(tus==="none"){
             settus("block")
-            document.getElementById("list").style.display ="none"
+            document.getElementById("mainContent").style.display ="none"
 
         }else {
             settus("none")
-            document.getElementById("list").style.display ="grid"
+            document.getElementById("mainContent").style.display ="block"
         }
     }
     

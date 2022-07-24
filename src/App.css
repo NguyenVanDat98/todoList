@@ -1,0 +1,13 @@
+.check{
+    display: flex;
+    justify-content: center;
+    
+   margin: 5px auto;
+}
+.check button{
+    display: block;
+    margin: auto 15px;
+    width: 40px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}

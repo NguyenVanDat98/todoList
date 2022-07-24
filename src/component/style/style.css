@@ -21,8 +21,13 @@
     display: block;
     margin: 0 auto;
   }
-  .main {
+  .main-layout{
     flex-grow: 1;
+    display: block;
+    width: 100%;
+  }
+  .main {
+  display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(3,1fr);
     margin: 30px auto;
@@ -89,6 +94,13 @@
     .main{
     grid-template-columns: repeat(5,1fr);
     grid-template-rows: repeat(3,1fr);
+    }
+    
+  }
+  @media (min-width:1570px) {
+    .main{
+    grid-template-columns: repeat(6,1fr);
+    grid-template-rows: repeat(2,1fr);
     }
     
   }

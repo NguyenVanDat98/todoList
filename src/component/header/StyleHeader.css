@@ -6,6 +6,7 @@
 .header {
     height: 60px;
     position: relative;
+    width: 100vw;
     align-items: center;
    padding-right: 20px;
    padding-left: 20px;
@@ -41,10 +42,12 @@ background-color: aquamarine;
     
     align-items: center;
     top: 100px;
+ 
     right: 30%;
     left: 30%;
     z-index: 100;
-    min-width: 300px;
+
+    min-width: 400px;
     height: max-content;
     border-radius: 10px;
     background-color: rgba(145, 145, 145, 0.815);

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const FormHeader = props => {
     const{sty}=props
-    console.log(sty);
+
     return (
         <div  className='formHeader' style={{display : sty }}>
             <div className='item-input'>
@@ -20,8 +20,7 @@ const FormHeader = props => {
             </div>
             <div className="addNew">
                 <button>ADD CREATE</button>
-            </div>
-           
+            </div>           
         </div>
     );
 };
