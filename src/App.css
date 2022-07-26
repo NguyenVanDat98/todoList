@@ -1,12 +1,12 @@
-.check{
+.check,.check-bottom{
     display: flex;
     justify-content: center;
     
    margin: 5px auto;
 }
-.check button{
+.check button, .check-bottom button {
     display: block;
-    margin: auto 15px;
+    margin: auto 10px;
     width: 40px;
     border: 1px solid #eee;
     border-radius: 5px;

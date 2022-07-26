@@ -29,6 +29,7 @@
     width: 70px;
     border-radius: 10px;
     border: none;
+    font-weight: bold;
 }
 .header button:nth-child(1){
     width: 200px;
@@ -38,15 +39,12 @@ background-color: aquamarine;
 }
 .formHeader {
 
-    position: absolute;
-    
+    position: absolute;    
     align-items: center;
-    top: 100px;
- 
+    top: 100px; 
     right: 30%;
     left: 30%;
     z-index: 100;
-
     min-width: 400px;
     height: max-content;
     border-radius: 10px;
@@ -56,15 +54,10 @@ background-color: aquamarine;
 .item-input{
     padding-top:  10px;
     display: flex;
-    align-items: center;
-  
+    align-items: center;  
     margin: 5px 20px;
 }
-.formHeader label{
-    align-items: center;
-font-weight: bold;
-    width: 120px;
-}
+
 .item-input input {
     border-radius: 5px;
     border: none;
@@ -84,7 +77,7 @@ font-weight: bold;
 @media (max-width:700px) {
   
     .search input{
-        width: 100px;
+        width: 30%;
     }
 
   }

@@ -9,7 +9,10 @@
     width: 100%;
   }
   .header label {
-    width: 80px;
+    width: 120px;
+    align-items: center;
+    font-weight: bold;
+  font-size: 18px;
 
   }
   .header textarea {
@@ -25,25 +28,38 @@
     flex-grow: 1;
     display: block;
     width: 100%;
+    height: max-content;
   }
+ 
+  .side{
+    width: 100%;   
+}
+
+.side >button{
+    height: 50px;
+    width: 100%;
+    border: none;    
+}
+
   .main {
   display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(3,1fr);
     margin: 30px auto;
-    row-gap: 20px;
+    row-gap: 15px;
+    height: max-content;
     justify-items: center;
   }
-  .done {
+  .Done {
     color: red;
     font-weight: 800;
   }
-  .doning {
+  .Doing {
     color: blue;
     font-weight: 800;
 
   }
-  .start {
+  .New {
     color: green;
     font-weight: 800;
 
@@ -64,6 +80,14 @@
   }
   .taskItem>div{
     border-top: 1px solid black;
+  }
+  @media (max-width:479px) {
+    .main{
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(12,1fr);
+    }
+  
+   
   }
   @media (min-width:480px) {
     .main{
@@ -104,4 +128,14 @@
     }
     
   }
+  .btn-secondary{
+    background-color: rgb(190, 102, 30);
+    border-radius: 0px;
+  }
+.sidebarList {
+  width: 20%;
+  align-self: stretch;
+
+  background-color: rgb(255, 137, 41);
+}
  
