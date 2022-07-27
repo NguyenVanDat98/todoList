@@ -1,12 +1,49 @@
-.check,.check-bottom{
-    display: flex;
-    justify-content: center;
-    
+.check {
+  display: flex;  
+  justify-content: center;
 }
-.check button, .check-bottom button {
-    display: block;
-    margin: auto 10px;
+.check button,
+.check-bottom button {
+  display: block;
+  margin: auto 10px;  
+  width: 40px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+.active {
+  background-color: brown;
+}
+.pagination > button {
+ 
+  width: 70px;
+  height: 30px;
+  color: white;
+  border-radius: 5px;
+  background-color: #007bff;
+}
+.pagination {
+  margin: auto;
+  width: max-content;
+  align-items: center;
+}
+.pagination :disabled {
+  background-color: rgba(51, 51, 51, 0.303);
+}
+@media (max-width: 500px) {
+  .pagination {
+    position: fixed;
+    top: 10%;
+    flex-direction: column;
+    right: 0;
+  }
+  .pagination > button {
     width: 40px;
-    border: 1px solid #eee;
-    border-radius: 5px;
+  }
+  .check button {
+    margin: 10px 0;
+}
+.check{
+    flex-direction: column;
+    margin: 10px 0;
+}
 }

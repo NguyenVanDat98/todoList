@@ -137,22 +137,5 @@
 
   background-color: rgb(255, 137, 41);
 }
-.active {
-  background-color: brown;
-}
-.pagination> button{
-  width: 70px;
-  height: 30px;
-  color: white;
-  border-radius: 5px;
-  background-color: #007bff;
-}
-.pagination {
-  margin: auto;
-  width: max-content;
-  align-items: center;
-}
-.pagination :disabled{
-  background-color: rgba(51, 51, 51, 0.303);
-}
+
  
