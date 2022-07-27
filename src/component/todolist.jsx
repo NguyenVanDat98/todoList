@@ -14,6 +14,7 @@ const Todolist = (props) => {
           status={arr.stt}
           dess={arr.mess}
           name={arr.name}
+          txtBtn={arr.btn}
         />
       ))}
     </div>

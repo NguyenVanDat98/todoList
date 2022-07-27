@@ -6,7 +6,7 @@ import { useState } from "react";
 import add from "../../data";
 
 const itemdata = JSON.parse(localStorage.getItem("dataa"));
-const data = [itemdata];
+const data = itemdata?[...itemdata]:[];
 
 function DataItem(title, name, desscription) {
     this.title = title;
@@ -19,8 +19,6 @@ const Header = (props) => {
     const [change, setchange] = useState(true);
     
 console.log(data);
-
-
   const create = () => {
     
     let a =0;
@@ -44,7 +42,7 @@ console.log(data);
       document.getElementById("creator").value = "";
       document.getElementById("desscription").value = "";
       change===true ? setchange(!true):setchange(true);
-    //   btn();
+      btn();
     }
   };
 

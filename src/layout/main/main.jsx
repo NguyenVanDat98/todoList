@@ -26,6 +26,14 @@ import Todolist from '../../component/todolist';
         }         
         }         
     })
+    arr.forEach((e,i)=>{
+        e.forEach((a,index)=>{
+            a.btn = a.stt=="New"?"Start":(a.stt== "Doing"?"Done":"Renew")
+            console.log(a);
+        }
+        )
+
+    })
     console.log(aii);  
 
     const Main = props => {
@@ -33,16 +41,23 @@ import Todolist from '../../component/todolist';
         const [change, setchange] = useState(true);           
  
     function settxt(e) {
+        console.log(e.target.id);
         arr[index].map((a,i)=>{
         if (i == e.target.id){       
             if(a.stt=="New"){
-                a.stt="Doing"
+                a.stt="Doing" 
+                a.btn="Done"
+
             }else if(a.stt=="Doing"){
                 a.stt = "Done"
-            }else {a.stt="New"}
+                a.btn="Renew"
+            }else {a.stt="New"
+                    a.btn="Doing"            
+        }
+        console.log(a);
         }
     }) 
-    change===true? setchange(false) :setchange(true)
+    setchange(!change   )
     }
         function clickk(e) {
             aii.forEach((item, i) => {
@@ -51,9 +66,13 @@ import Todolist from '../../component/todolist';
                     setInd(i)                  
                 }
             })
+            document.querySelectorAll(".check button").forEach((el)=>{
+el.classList.remove("active")
+            })
+            e.target.classList.add("active")
         }
         function sortNew(e){
-        data.filter(function(arr){
+        const item = data.filter(function(arr){
                 if(arr.stt==e){
                     return  console.log(arr);
                 }
@@ -77,7 +96,8 @@ import Todolist from '../../component/todolist';
                     </div>
                     <div id="list" className='w-100'>
                         {
-                            <Todolist eventt={settxt} data={arr[index]}/>
+                           
+                           <Todolist eventt={settxt} data={arr[index]}/>
                         }
                     </div>
                     <div className="check-bottom mt-3">

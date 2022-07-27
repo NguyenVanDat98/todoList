@@ -5,10 +5,10 @@ import { useState } from "react";
 
 // 
 function Todoitem(props) {
-  const { title, name, dess,setevent , status } = props;
- const [colorr, setcolor] = useState("#04BE00");
-  const [txt, settext] = useState("Change"); 
+  const { title, name, dess,setevent , status ,txtBtn } = props;
 
+  
+ 
   return (
     <div className="taskItem mx-2 my-2 px-2 py-2">
       <label>
@@ -28,7 +28,7 @@ function Todoitem(props) {
         <p>{dess}</p>
       </div>
       <button id={props.iid}  className="btn-primary" onClick={setevent}>
-        {txt}
+        {txtBtn}
       </button>
     </div>
   );
@@ -39,5 +39,6 @@ Todoitem.defaultProps = {
   tit: "title 1",
   name: "name",
   dess: "messs",
+
 };
 export default Todoitem;

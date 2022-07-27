@@ -73,8 +73,7 @@
     display: block;
     text-overflow: ellipsis; 
     overflow: hidden;   
-    line-height: 18px;
-    
+    line-height: 18px;    
     margin-bottom: 2px
     ;
   }
@@ -137,5 +136,8 @@
   align-self: stretch;
 
   background-color: rgb(255, 137, 41);
+}
+.active {
+  background-color: brown;
 }
  
