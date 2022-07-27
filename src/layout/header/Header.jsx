@@ -5,7 +5,7 @@ import FormHeader from "../../component/FormHeader";
 import { useState } from "react";
 import add from "../../data";
 
-const itemdata = JSON.parse(localStorage.getItem("dataa"));
+const itemdata = localStorage.getItem("dataa")? JSON.parse(localStorage.getItem("dataa")):[];
 const data = itemdata?[...itemdata]:[];
 
 function DataItem(title, name, desscription) {
