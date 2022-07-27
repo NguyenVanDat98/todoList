@@ -62,7 +62,7 @@ const Main = (props) => {
   function runtime(e,a){
     setchange(!change);
     console.log(index);
-    if (e<a){
+    if (e<1){
        
        document.querySelectorAll(".check button").forEach((el,indexx)=>{
             indexx<=2? el.style.display= "block": el.style.display= "none"
@@ -98,7 +98,7 @@ const Main = (props) => {
   }
   function nexts(){
     let temp=0;
-    runtime(index, 1);
+    runtime(index);
       if(index!==arr.length-1){
         document.querySelectorAll(".check button").forEach((el) => {
             if(el.classList.contains("active")){
@@ -115,7 +115,7 @@ const Main = (props) => {
   function prer() {
     let temp = 0;
     let cont;
-    runtime(index , 1);
+    runtime(index);
       if(index!==0){
         document.querySelectorAll(".check button").forEach((el,ii) => {
                 if(el.classList.contains("active")){
@@ -165,10 +165,9 @@ const Main = (props) => {
         <div className="pagination mt-4 d-flex justify-content-center" >
             <button onClick={prer} id="pre" disabled={index==0 ? true : false}>Pre</button>
             <div className="check mx-auto">
-                {
-                   
+                {                   
                 aii.map((arc, i) => (                    
-                      <button onClick={clickk} key={i} id={i}> {arc}  </button>                     
+                      <button onClick={clickk} key={i} className={i==0 ?"active":""} style={{display : i>2 ?"none":"block"}} id={i}> {arc}   </button>                     
                 ))
                 }
              </div>
