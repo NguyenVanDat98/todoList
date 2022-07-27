@@ -79,5 +79,9 @@ background-color: aquamarine;
     .search input{
         width: 30%;
     }
+    .search bottom{
+        flex-shrink: 1
+       }
 
   }
+  

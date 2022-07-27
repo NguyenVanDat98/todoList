@@ -150,4 +150,7 @@
 .pagination {
   align-items: center;
 }
+.pagination :disabled{
+  background-color: rgba(51, 51, 51, 0.303);
+}
  
