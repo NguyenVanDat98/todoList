@@ -5,9 +5,19 @@ import Sidebar from "../../component/sidebar";
 
 import "../style.css";
 import Todolist from "../../component/todolist";
-const datalocal = JSON.parse(localStorage.getItem("dataa"));
 
-const data = [...add()];
+
+const Main = (props) => {
+  const [valid ,change]=useState({state : props.valid})
+  const [index, setInd] = useState(0);
+  const [changeRender, reRender] = useState(props.render);
+  const [runRender, reRunRender] = useState(true);
+  
+  
+
+  const datalocal = localStorage.getItem("dataa")? JSON.parse(localStorage.getItem("dataa")):[];
+
+const data = [...add() , ...datalocal];
 console.log(data);
 const arr = [];
 const aii = [];
@@ -17,7 +27,7 @@ data.forEach((e, i) => {
     aii.push(arr.length);
   }
   if (i == add().length - 1) {
-    if ((i + 1) % 12 !== 0) {
+    if ((i + 1) % 12 != 0) {
       console.log("index min " + (i + 1 - ((i + 1) % 12)));
       console.log("max " + i);
       console.log((i + 1) % 12);
@@ -33,15 +43,30 @@ arr.forEach((e, i) => {
   });
 });
 console.log(aii);
+const allStatus = ["New", "Doing", "Done","Renew"]
 
-const Main = (props) => {
-  const [index, setInd] = useState(0);
-  const [change, setchange] = useState(true);
-//   const [Arrayy, setarray] = useState(arr[index]);
-//   const [statePagination ,setState] = useState({next:true, pre:true})
-    // useEffect(runtime(index),[])
+
+    function settxtt(e) {
+      arr[index].map((a, i) => {
+        if (i == e.target.id) {
+          let temp = 0;
+          allStatus.forEach((atus,index)=>{
+             if(a.stt == atus && temp==0 && a.stt!="Done"){
+              a.stt= allStatus[index+1]
+              a.btn = allStatus[index+2]
+              temp++            
+            }else if(a.stt == "Done" && temp==0){
+              a.stt= allStatus[0]
+              a.btn = allStatus[1]
+            }
+          })
+          console.log(a);
+        }
+      });
+      reRunRender(!runRender)
+    }
+
   function settxt(e) {
-    console.log(e.target.id);
     arr[index].map((a, i) => {
       if (i == e.target.id) {
         if (a.stt == "New") {
@@ -54,52 +79,53 @@ const Main = (props) => {
           a.stt = "New";
           a.btn = "Doing";
         }
+        
         console.log(a);
       }
     });
-    setchange(!change);
+    // reRender(!changeRender);
   }
-  function runtime(e,a){
-    setchange(!change);
-    console.log(index);
+
+
+  function runtime(e){
+
     if (e<1){
-       
        document.querySelectorAll(".check button").forEach((el,indexx)=>{
             indexx<=2? el.style.display= "block": el.style.display= "none"
        })
     }else if (e == arr.length-1 ){
-   
         document.querySelectorAll(".check button").forEach((el,indexx)=>{
             indexx<=arr.length-4? el.style.display= "none": el.style.display= "block"
         })
     }else {
-       
-
         document.querySelectorAll(".check button").forEach((el,indexx)=>{
             (indexx >= e-1 && indexx-1 <= e)? el.style.display= "block" : el.style.display= "none"
         })
     }
-   
-
+    // reRender(!changeRender);
   }
+
+
+
   function clickk(e){
 
     aii.forEach((item , i) => {
       e.target.id == i ? setInd(i) : console.log();;
     });
-    runtime(e.target.id ,1);
+    runtime(e.target.id);
 
     document.querySelectorAll(".check button").forEach((el) => {
       el.classList.remove("active");
     });
     e.target.classList.add("active");
-    
+}
 
-  }
+
+
   function nexts(){
     let temp=0;
     runtime(index);
-      if(index!==arr.length-1){
+      if(index!=arr.length-1){
         document.querySelectorAll(".check button").forEach((el) => {
             if(el.classList.contains("active")){
                 el.classList.remove("active");
@@ -112,11 +138,14 @@ const Main = (props) => {
           setInd(index+1)
       };
   }
+
+
+
   function prer() {
     let temp = 0;
     let cont;
     runtime(index);
-      if(index!==0){
+      if(index!=0){
         document.querySelectorAll(".check button").forEach((el,ii) => {
                 if(el.classList.contains("active")){
                     el.classList.remove("active");
@@ -124,7 +153,7 @@ const Main = (props) => {
                     cont = ii-1;
                 }
             });
-
+ 
           document.querySelectorAll(".check button").forEach((el,ii) => {  
             if (cont==ii) {
                 el.classList.add("active")
@@ -132,16 +161,13 @@ const Main = (props) => {
             });
         setInd(index-1);
       }
-       
-
-      
-      
   }
 
-  function sortNew(e) {
+
+  function sortNew() {
     const item = data.filter(function (arr) {
-      if (arr.stt == e) {
-        return console.log(arr);
+      if (arr.stt == "new") {
+         console.log(arr);
       }
     });
   }
@@ -160,7 +186,7 @@ const Main = (props) => {
       <div className="main-layout" id="mainContent">
 
         <div id="list" className="w-100">
-          {<Todolist eventt={settxt} data={arr[index]} />}
+          {<Todolist eventt={settxtt} data={arr[index]} />}
         </div>
         <div className="pagination mt-4 d-flex justify-content-center" >
             <button onClick={prer} id="pre" disabled={index==0 ? true : false}>Pre</button>
