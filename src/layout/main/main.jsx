@@ -6,31 +6,37 @@ import Sidebar from "../../component/sidebar";
 import "../style.css";
 import Todolist from "../../component/todolist";
 
+let data =[]
+let arr=[]; 
+let aii=[] ;
+console.log("Doing Change");
+
+let datalocal = localStorage.getItem("dataa") ? JSON.parse(localStorage.getItem("dataa")): [];
+data = [...add()];
+datalocal.forEach((e)=>{
+data.push(e)
+})
+const limmit= 12
+data.forEach((e, i) => {
+    if ((i + 1) % limmit == 0 && i != 0) {
+      arr.push(data.slice(i - (limmit-1), i + 1));
+      aii.push(arr.length);
+    }
+    if (i == add().length - 1) {
+      if ((i + 1) % limmit !== 0) {
+        arr.push(data.slice(i + 1 - ((i + 1) % limmit)));
+        aii.push(arr.length);
+      }
+    }
+  });
 
 const Main = (props) => {
   const [index, setInd] = useState(0);
-  const [change, setchange] = useState(true);
+  const [change, setchange] = useState(true);      
 
-const datalocal = localStorage.getItem("dataa")? JSON.parse(localStorage.getItem("dataa")):[];
 
-const data = [...add(),...datalocal];
-const arr = [];
-const aii = [];
-data.forEach((e, i) => {
-  if ((i + 1) % 12 == 0 && i != 0) {
-    arr.push(data.slice(i - 11, i + 1));
-    aii.push(arr.length);
-  }
-  if (i == add().length - 1) {
-    if ((i + 1) % 12 !== 0) {
-      // console.log("index min " + (i + 1 - ((i + 1) % 12)));
-      // console.log("max " + i);
-      console.log((i + 1) % 12);
-      arr.push(data.slice(i + 1 - ((i + 1) % 12)));
-      aii.push(arr.length);
-    }
-  }
-});
+// console.log("saukhi change", arr);
+
 arr.forEach((e, i) => {
   e.forEach((a, index) => {
     a.btn = a.stt == "New" ? "Start" : a.stt == "Doing" ? "Done" : "Renew";
@@ -45,7 +51,7 @@ const allStatus = ["New", "Doing", "Done","Renew"]
         if (i == e.target.id) {
           let temp = 0;
           allStatus.forEach((atus,index)=>{
-             if(a.stt == atus && temp==0 && a.stt!=="Done"){
+             if(a.stt == atus && temp==0 && a.stt!="Done"){
               a.stt= allStatus[index+1]
               a.btn = allStatus[index+2]
               temp++            
@@ -80,8 +86,8 @@ const allStatus = ["New", "Doing", "Done","Renew"]
     setchange(!change);
   }
 
-  function runtime(e,a){
-    setchange(!change);
+  function runtime(e){
+    // setchange(!change);
     console.log(index);
     if (e<1){       
        document.querySelectorAll(".check button").forEach((el,indexx)=>{
@@ -127,6 +133,8 @@ const allStatus = ["New", "Doing", "Done","Renew"]
                 temp--;
             } 
           });
+          console.log(data);
+
           setInd(index+1)
       };
   }
@@ -161,7 +169,9 @@ const allStatus = ["New", "Doing", "Done","Renew"]
       }
     });
   }
-  /////////////////////////
+  ////////////////////////
+
+console.log(1);
   return (
     <div
       id="mainContent"
@@ -178,7 +188,7 @@ const allStatus = ["New", "Doing", "Done","Renew"]
 
         <div id="list" className="w-100">
           {<Todolist eventt={settxtt} data={arr[index]} />}
-        </div>
+        </div> 
         <div className="pagination mt-4 d-flex justify-content-center" >
             <button onClick={prer} id="pre" disabled={index==0 ? true : false}>Pre</button>
             <div className="check mx-auto">
