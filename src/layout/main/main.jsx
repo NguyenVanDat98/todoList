@@ -8,12 +8,26 @@ import Todolist from "../../component/todolist";
 
 
 const Main = (props) => {
+<<<<<<< HEAD
   const [index, setInd] = useState(0);
   const [change, setchange] = useState(true);
 
 const datalocal = localStorage.getItem("dataa")? JSON.parse(localStorage.getItem("dataa")):[];
 
 const data = [...add(),...datalocal];
+=======
+  const [valid ,change]=useState({state : props.valid})
+  const [index, setInd] = useState(0);
+  const [changeRender, reRender] = useState(props.render);
+  const [runRender, reRunRender] = useState(true);
+  
+  
+
+  const datalocal = localStorage.getItem("dataa")? JSON.parse(localStorage.getItem("dataa")):[];
+
+const data = [...add() , ...datalocal];
+console.log(data);
+>>>>>>> b09e935aa0be98162061e62fe56a4ca011422c7c
 const arr = [];
 const aii = [];
 data.forEach((e, i) => {
@@ -22,9 +36,15 @@ data.forEach((e, i) => {
     aii.push(arr.length);
   }
   if (i == add().length - 1) {
+<<<<<<< HEAD
     if ((i + 1) % 12 !== 0) {
       // console.log("index min " + (i + 1 - ((i + 1) % 12)));
       // console.log("max " + i);
+=======
+    if ((i + 1) % 12 != 0) {
+      console.log("index min " + (i + 1 - ((i + 1) % 12)));
+      console.log("max " + i);
+>>>>>>> b09e935aa0be98162061e62fe56a4ca011422c7c
       console.log((i + 1) % 12);
       arr.push(data.slice(i + 1 - ((i + 1) % 12)));
       aii.push(arr.length);
@@ -37,6 +57,7 @@ arr.forEach((e, i) => {
 
   });
 });
+<<<<<<< HEAD
 
 ///////change status data item  111111/////
 const allStatus = ["New", "Doing", "Done","Renew"]
@@ -60,8 +81,33 @@ const allStatus = ["New", "Doing", "Done","Renew"]
       setchange(!change);
     }
 ///////change status data item  222222/////
+=======
+console.log(aii);
+const allStatus = ["New", "Doing", "Done","Renew"]
+
+
+    function settxtt(e) {
+      arr[index].map((a, i) => {
+        if (i == e.target.id) {
+          let temp = 0;
+          allStatus.forEach((atus,index)=>{
+             if(a.stt == atus && temp==0 && a.stt!="Done"){
+              a.stt= allStatus[index+1]
+              a.btn = allStatus[index+2]
+              temp++            
+            }else if(a.stt == "Done" && temp==0){
+              a.stt= allStatus[0]
+              a.btn = allStatus[1]
+            }
+          })
+          console.log(a);
+        }
+      });
+      reRunRender(!runRender)
+    }
+
+>>>>>>> b09e935aa0be98162061e62fe56a4ca011422c7c
   function settxt(e) {
-    console.log(e.target.id);
     arr[index].map((a, i) => {
       if (i == e.target.id) {
         if (a.stt == "New") {
@@ -74,12 +120,14 @@ const allStatus = ["New", "Doing", "Done","Renew"]
           a.stt = "New";
           a.btn = "Doing";
         }
+        
         console.log(a);
       }
     });
-    setchange(!change);
+    // reRender(!changeRender);
   }
 
+<<<<<<< HEAD
   function runtime(e,a){
     setchange(!change);
     console.log(index);
@@ -92,32 +140,61 @@ const allStatus = ["New", "Doing", "Done","Renew"]
             indexx<=arr.length-4? el.style.display= "none": el.style.display= "block"
         })
     }else {     
+=======
+
+  function runtime(e){
+
+    if (e<1){
+       document.querySelectorAll(".check button").forEach((el,indexx)=>{
+            indexx<=2? el.style.display= "block": el.style.display= "none"
+       })
+    }else if (e == arr.length-1 ){
+        document.querySelectorAll(".check button").forEach((el,indexx)=>{
+            indexx<=arr.length-4? el.style.display= "none": el.style.display= "block"
+        })
+    }else {
+>>>>>>> b09e935aa0be98162061e62fe56a4ca011422c7c
         document.querySelectorAll(".check button").forEach((el,indexx)=>{
             (indexx >= e-1 && indexx-1 <= e)? el.style.display= "block" : el.style.display= "none"
         })
     }
+<<<<<<< HEAD
   }
 
   //////////////click Botton page/////////////
+=======
+    // reRender(!changeRender);
+  }
+
+
+
+>>>>>>> b09e935aa0be98162061e62fe56a4ca011422c7c
   function clickk(e){
 
     aii.forEach((item , i) => {
       e.target.id == i ? setInd(i) : console.log();;
     });
-    runtime(e.target.id ,1);
+    runtime(e.target.id);
 
     document.querySelectorAll(".check button").forEach((el) => {
       el.classList.remove("active");
     });
     e.target.classList.add("active");
+<<<<<<< HEAD
   }
 
 
 ///////////////BUTTON NEXT///////////////////
+=======
+}
+
+
+
+>>>>>>> b09e935aa0be98162061e62fe56a4ca011422c7c
   function nexts(){
     let temp=0;
     runtime(index);
-      if(index!==arr.length-1){
+      if(index!=arr.length-1){
         document.querySelectorAll(".check button").forEach((el) => {
             if(el.classList.contains("active")){
                 el.classList.remove("active");
@@ -131,12 +208,17 @@ const allStatus = ["New", "Doing", "Done","Renew"]
       };
   }
 
+<<<<<<< HEAD
   /////////////////BUTT PER////////////////////
+=======
+
+
+>>>>>>> b09e935aa0be98162061e62fe56a4ca011422c7c
   function prer() {
     let temp = 0;
     let cont;
     runtime(index);
-      if(index!==0){
+      if(index!=0){
         document.querySelectorAll(".check button").forEach((el,ii) => {
                 if(el.classList.contains("active")){
                     el.classList.remove("active");
@@ -144,7 +226,7 @@ const allStatus = ["New", "Doing", "Done","Renew"]
                     cont = ii-1;
                 }
             });
-
+ 
           document.querySelectorAll(".check button").forEach((el,ii) => {  
             if (cont==ii) {
                 el.classList.add("active")
@@ -153,11 +235,17 @@ const allStatus = ["New", "Doing", "Done","Renew"]
         setInd(index-1);
       }
   }
+<<<<<<< HEAD
 //////////////////////////
   function sortNew(e) {
+=======
+
+
+  function sortNew() {
+>>>>>>> b09e935aa0be98162061e62fe56a4ca011422c7c
     const item = data.filter(function (arr) {
-      if (arr.stt == e) {
-        return console.log(arr);
+      if (arr.stt == "new") {
+         console.log(arr);
       }
     });
   }
