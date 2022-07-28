@@ -31,7 +31,6 @@ return {dataTask: dataa , arr:arr, aii :aii}
 const App = props => {
      const [change, setchange] = useState(true);
      const [data , setData] = useState (datak())
-     const [tus, settus] = useState("none");
 
 
   function btn() {
