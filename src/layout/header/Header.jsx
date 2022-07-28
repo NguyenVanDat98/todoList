@@ -7,24 +7,13 @@ import { useState } from "react";
 
 const Header = (props) => {
   
-    const [tus, settus] = useState("none");
-
-
-  function btn() {
-    if (tus === "none") {
-      settus("block");
-      document.getElementById("mainContent").style.display = "none";
-    } else {
-      settus("none");
-      document.getElementById("mainContent").style.display = "flex";
-    }
-  }
+    
  
   return (
     <div className="header  bg-primary justify-content-between">
-      <FormHeader handle={props.create} sty={tus} />
+      <FormHeader handle={props.create} sty={props.tus} />
       <div className="home">
-        <button onClick={btn} type="button">
+        <button onClick={props.btn} type="button">
           CREATE TODOITEM
         </button>
       </div>

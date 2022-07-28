@@ -6,47 +6,29 @@ import Sidebar from "../../component/sidebar";
 import "../style.css";
 import Todolist from "../../component/todolist";
 
-let data =[]
-let arr=[]; 
-let aii=[] ;
-console.log("Doing Change");
-
-let datalocal = localStorage.getItem("dataa") ? JSON.parse(localStorage.getItem("dataa")): [];
-data = [...add()];
-datalocal.forEach((e)=>{
-data.push(e)
-})
-const limmit= 12
-data.forEach((e, i) => {
-    if ((i + 1) % limmit == 0 && i != 0) {
-      arr.push(data.slice(i - (limmit-1), i + 1));
-      aii.push(arr.length);
-    }
-    if (i == add().length - 1) {
-      if ((i + 1) % limmit !== 0) {
-        arr.push(data.slice(i + 1 - ((i + 1) % limmit)));
-        aii.push(arr.length);
-      }
-    }
-  });
-
 const Main = (props) => {
+
   const [index, setInd] = useState(0);
-  const [change, setchange] = useState(true);      
+  const [change, setchange] = useState(true);
+
+let arr = props.arr;
+let aii = props.aii;
+let data = props.data;
 
 
-// console.log("saukhi change", arr);
 
-arr.forEach((e, i) => {
+
+
+  arr.forEach((e, i) => {
   e.forEach((a, index) => {
     a.btn = a.stt == "New" ? "Start" : a.stt == "Doing" ? "Done" : "Renew";
-
   });
-});
+  });
 
 ///////change status data item  111111/////
-const allStatus = ["New", "Doing", "Done","Renew"]
+
     function settxtt(e) {
+      const allStatus = ["New", "Doing", "Done","Renew"]
       arr[index].map((a, i) => {
         if (i == e.target.id) {
           let temp = 0;
@@ -55,7 +37,7 @@ const allStatus = ["New", "Doing", "Done","Renew"]
               a.stt= allStatus[index+1]
               a.btn = allStatus[index+2]
               temp++            
-            }else if(a.stt == "Done" && temp==0){
+            }else if(a.stt == "Done" && temp==0 ){
               a.stt= allStatus[0]
               a.btn = allStatus[1]
             }
@@ -118,7 +100,6 @@ const allStatus = ["New", "Doing", "Done","Renew"]
     e.target.classList.add("active");
   }
 
-
 ///////////////BUTTON NEXT///////////////////
   function nexts(){
     let temp=0;
@@ -133,8 +114,6 @@ const allStatus = ["New", "Doing", "Done","Renew"]
                 temp--;
             } 
           });
-          console.log(data);
-
           setInd(index+1)
       };
   }
@@ -151,7 +130,7 @@ const allStatus = ["New", "Doing", "Done","Renew"]
                     temp++;
                     cont = ii-1;
                 }
-            });
+            })
 
           document.querySelectorAll(".check button").forEach((el,ii) => {  
             if (cont==ii) {
@@ -187,7 +166,7 @@ console.log(1);
       <div className="main-layout" id="mainContent">
 
         <div id="list" className="w-100">
-          {<Todolist eventt={settxtt} data={arr[index]} />}
+          {<Todolist eventt={settxt} data={arr[index]} />}
         </div> 
         <div className="pagination mt-4 d-flex justify-content-center" >
             <button onClick={prer} id="pre" disabled={index==0 ? true : false}>Pre</button>
