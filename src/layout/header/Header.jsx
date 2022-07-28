@@ -11,7 +11,7 @@ const Header = (props) => {
  
   return (
     <div className="header  bg-primary justify-content-between">
-      <FormHeader handle={props.create} sty={props.tus} />
+      <FormHeader handle={props.btn}  sty={props.tus} val={props.reVal}/>
       <div className="home">
         <button onClick={props.btn} type="button">
           CREATE TODOITEM

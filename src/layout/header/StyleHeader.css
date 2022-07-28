@@ -74,7 +74,7 @@ background-color: aquamarine;
     margin-bottom: 10px;
     margin-top: 10px;
 }
-@media (max-width:500px) {
+@media (max-width:700px) {
     .formHeader{
         left: 0;
         right: 0px;
@@ -98,6 +98,8 @@ background-color: aquamarine;
     .search button{
        width: fit-content;
        }
-
+#next{
+    height: max-content;
+}
   }
   

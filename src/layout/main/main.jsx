@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import add from "../../data";
-import Sidebar from "../../component/sidebar";
 
+import Sidebar from "../../component/sidebar";
 import "../style.css";
 import Todolist from "../../component/todolist";
 
@@ -14,10 +13,6 @@ const Main = (props) => {
 let arr = props.arr;
 let aii = props.aii;
 let data = props.data;
-
-
-
-
 
   arr.forEach((e, i) => {
   e.forEach((a, index) => {
@@ -62,7 +57,8 @@ let data = props.data;
           a.stt = "New";
           a.btn = "Doing";
         }
-        console.log(a);
+        localStorage.setItem("dataa",JSON.stringify(data))
+      
       }
     });
     setchange(!change);
@@ -150,7 +146,7 @@ let data = props.data;
   }
   ////////////////////////
 
-console.log(1);
+
   return (
     <div
       id="mainContent"
@@ -168,7 +164,7 @@ console.log(1);
         <div id="list" className="w-100">
           {<Todolist eventt={settxt} data={arr[index]} />}
         </div> 
-        <div className="pagination mt-4 d-flex justify-content-center" >
+        <div className="pagination mt-4  justify-content-center" style={{display : arr.length==1 ? "none": "flex"}} >
             <button onClick={prer} id="pre" disabled={index==0 ? true : false}>Pre</button>
             <div className="check mx-auto">
                 {                   
@@ -177,7 +173,7 @@ console.log(1);
                 ))
                 }
              </div>
-            <button onClick={nexts} id="next" disabled={index==arr.length-1 ? true : false}>Next</button>
+            <button onClick={nexts} id="next" disabled={index==arr.length-1 ? true : false}>Next {index+1}/{arr.length}</button>
         </div>
         
       </div>
