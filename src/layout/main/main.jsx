@@ -15,11 +15,11 @@ const Main = (props) => {
   let arr = props.arr;
   let aii = props.aii;
   let data = props.data;
-  
-  const [DB, setdata] = useState(data);  
+ console.log('RERENDERS');
+  const [DB, setdata] = useState(props.data);  
   const [temparr, settemparr] = useState(props.arr);  
   const [ mainArray ,setArray] = useState(temparr[index])
-// console.log(data);
+console.log("DB",DB);
 // console.log(mainArray);
 
   temparr.forEach((e, i) => {
@@ -136,15 +136,15 @@ const Main = (props) => {
     let cont;
     runtime(index);
       if(index!==0){
-        document.querySelectorAll(".check button").forEach((el,ii) => {
+        document.querySelectorAll(".check button").forEach((el,i) => {
                 if(el.classList.contains("active")){
                     el.classList.remove("active");
                     temp++;
-                    cont = ii-1;
+                    cont = i-1;
                 }
             })
-          document.querySelectorAll(".check button").forEach((el,ii) => {  
-            if (cont==ii) {
+          document.querySelectorAll(".check button").forEach((el,i) => {  
+            if (cont==i) {
                 el.classList.add("active")
             }
             });
@@ -153,17 +153,7 @@ const Main = (props) => {
       }
   }
 //////////////////////////
-  function filterDB() {  
-    const item = DB.filter(function (arr) {
-      if (arr.stt == "New") {
-       return arr
-      }
-    });
-    
-    localStorage.setItem("new", JSON.stringify(item))
-    settemparr(datak("new",item).arr)
-    setArray(datak("new",item).arr[index])
-  }
+ 
 
   function filterData(a, b) { 
     

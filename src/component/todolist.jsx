@@ -6,7 +6,7 @@ const Todolist = (props) => {
 
 
 let data = props.data ? props.data : [];
-
+console.log(data);
   return (
     <div className="main m-3 flex-wrap">
       {data.map((arr, i) => (

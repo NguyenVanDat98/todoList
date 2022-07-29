@@ -24,7 +24,7 @@ const FormHeader = props => {
             alert("trong");
         } 
         else {
-            // datak("dataa",add());  
+            datak("dataa",add());  
             let ai={title,name,mess};
             let b={...ai,stt:"New" }
             console.log(b);

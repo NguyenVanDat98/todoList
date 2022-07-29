@@ -9,9 +9,9 @@ const App = props => {
      const [change, setchange] = useState(true);
      const [data , setData] = useState (datak("dataa", add()))
      const [tus, settus] = useState("none");
-console.log(data);
+      console.log(data);
   function btn() {
-    setData(datak("dataa", add()))
+    
     if (tus === "none") {
       settus("block");
       document.getElementById("mainContent").style.display = "none";
@@ -19,12 +19,13 @@ console.log(data);
       settus("none");
       document.getElementById("mainContent").style.display = "flex";
     }
+   setData(datak("dataa", add())) 
   }
  
   return (
     <div className='App'>
-      <Header btn={btn} tus={tus} />
-      <Main arr={data.arr} aii={data.aii}  data={data.dataTask}/>
+      <Header  btn={btn} tus={tus} />
+      <Main   arr={data.arr} aii={data.aii}  data={data.dataTask}/>
     </div>
   );
 };
