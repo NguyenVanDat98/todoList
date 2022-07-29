@@ -14,9 +14,9 @@ const Main = (props) => {
   const [index, setInd] = useState(0);
   let arr = props.arr;
   let aii = props.aii;
-  let data = props.data;
- console.log('RERENDERS');
-  const [DB, setdata] = useState(props.data);  
+  let DB = props.data;
+
+  // const [DB, setdata] = useState(props.data);  
   const [temparr, settemparr] = useState(props.arr);  
   const [ mainArray ,setArray] = useState(temparr[index])
 console.log("DB",DB);
