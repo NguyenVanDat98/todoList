@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { datak } from '../App';
+// import { datak } from '../App';
+import add from '../data';
+import { datak } from '../run';
+
 
 
 const FormHeader = props => {
@@ -21,11 +24,11 @@ const FormHeader = props => {
             alert("trong");
         } 
         else {
-            datak();  
+            // datak("dataa",add());  
             let ai={title,name,mess};
             let b={...ai,stt:"New" }
             console.log(b);
-            let data = datak().dataTask
+            let data = datak("dataa", add()).dataTask
             data.push(b)
             localStorage.setItem("dataa", JSON.stringify(data));
             console.log(data);
@@ -33,10 +36,8 @@ const FormHeader = props => {
             setName("");
             setDess("");
             handle();
-            }
-            
-    }
-    
+            }            
+    }    
 
     return (
         <div  className='formHeader' style={{display : sty }}>

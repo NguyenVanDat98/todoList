@@ -1,105 +1,109 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 .header {
-    height: 60px;
-    position: relative;
-    width: 100vw;
-    align-items: center;
-   padding-right: 20px;
-   padding-left: 20px;
-   display: flex;
+  height: 60px;
+  position: relative;
+  width: 100vw;
+  align-items: center;
+  padding-right: 20px;
+  padding-left: 20px;
+  display: flex;
 }
-.search input{
-    height: 50px;
-    width:300px;
-    margin: 0 20px ;
-    border: none;
-    background-color: rgb(6, 73, 197);
-    border-radius: 10px;
-    padding: 5px 10px;
-    color: white;
-    
-    font-size: 20px;
+.search input {
+  height: 50px;
+  width: 300px;
+  margin: 0 20px;
+  border: none;
+  background-color: rgb(6, 73, 197);
+  border-radius: 10px;
+  padding: 5px 10px;
+  color: white;
+
+  font-size: 20px;
 }
 .header button {
-    height: 50px;
-    width: 70px;
-    border-radius: 10px;
-    border: none;
-    font-weight: bold;
+  height: 50px;
+  width: 70px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
 }
-.header button:nth-child(1){
-    width: 200px;
+.header button:nth-child(1) {
+  width: 200px;
 }
-.header button:nth-child(1):hover{
-background-color: aquamarine;
+.header button:nth-child(1):hover {
+  background-color: rgb(127, 208, 255);
 }
 .formHeader {
-
-    position: absolute;    
-    align-items: center;
-    top: 100px; 
-    right: 30%;
-    left: 30%;
-    z-index: 100;
-    min-width: 400px;
-    height: max-content;
-    border-radius: 10px;
-    background-color: rgba(145, 145, 145, 0.815);
-
+  position: absolute;
+  align-items: center;
+  top: 100px;
+  right: 30%;
+  left: 30%;
+  z-index: 100;
+  min-width: 400px;
+  height: max-content;
+  border-radius: 10px;
+  background-color: rgba(145, 145, 145, 0.815);
 }
-.item-input{
-    padding-top:  10px;
-    display: flex;
-    align-items: center;  
-    margin: 5px 20px;
+.item-input {
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  margin: 5px 20px;
 }
 
 .item-input input {
-    border-radius: 5px;
-    border: none;
-    font-size: 18px;
-    padding: 5px 5px;
-    flex-grow: 1;
+  border-radius: 5px;
+  border: none;
+  font-size: 18px;
+  padding: 5px 5px;
+  flex-grow: 1;
 }
 
-.addNew button{
-    padding: 5px;
-    font-weight: bold;
-    display: block;
-    margin: auto;
-    margin-bottom: 10px;
-    margin-top: 10px;
+.addNew button {
+  padding: 5px;
+  font-weight: bold;
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
-@media (max-width:700px) {
-    .formHeader{
-        left: 0;
-        right: 0px;
-        width: 100%;
-    }
-    .item-input{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        flex-direction: column;
-        flex-wrap: wrap;
-        margin: 15px auto;
-    }
-    .search input{
-        width: 30%;
-    }
-    .home button{
-        width: 30%;
-    }
-    .search button{
-       width: fit-content;
-       }
-#next{
-    height: max-content;
-}
+@media (max-width: 700px) {
+  .formHeader {
+    left: 10px;
+    right: 10px;
+    width: 100%;
   }
-  
+  .header button:nth-child(1) {
+    width: 100px;
+  }
+  .item-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 15px auto;
+  }
+  .search input {
+    width: 100%;
+  }
+  .home button {
+    width: 30%;
+  }
+  .search {
+    display: flex;
+    justify-content: end;
+  }
+  .search button {
+    width: fit-content;
+  }
+  #next {
+    height: max-content;
+  }
+}

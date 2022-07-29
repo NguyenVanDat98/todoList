@@ -4,9 +4,12 @@ import Todoitem from "./todoitem";
 
 const Todolist = (props) => {
 
+  console.log(props.data);
+let data = props.data ? props.data : [];
+
   return (
     <div className="main m-3 flex-wrap">
-      {props.data.map((arr, i) => (
+      {data.map((arr, i) => (
         <Todoitem
           iid={i}
           key={i}

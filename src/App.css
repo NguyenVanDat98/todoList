@@ -30,12 +30,12 @@
 .pagination :disabled {
   background-color: rgba(51, 51, 51, 0.303);
 }
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   .pagination {
     position: fixed;
     top: 10%;
     flex-direction: column;
-    right: 0;
+    right: 25px;
   }
   .pagination > button {
     width: 40px;
