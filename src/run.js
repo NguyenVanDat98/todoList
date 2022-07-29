@@ -3,7 +3,7 @@ export function datak(datalocal,rootdata){
     let arr=[]; 
    let itemdata = localStorage.getItem(datalocal)? JSON.parse(localStorage.getItem(datalocal)):[];
    let datae=localStorage.getItem(datalocal) ? []: rootdata;    
-   console.log(itemdata);   
+ 
        itemdata.forEach((e)=>{
        datae.push(e)
        })

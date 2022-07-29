@@ -4,7 +4,7 @@ import Todoitem from "./todoitem";
 
 const Todolist = (props) => {
 
-  console.log(props.data);
+
 let data = props.data ? props.data : [];
 
   return (

@@ -9,9 +9,9 @@ import { datak } from "../../run";
 import add from "../../data";
 
 const Main = (props) => {
+  const [change, setchange] = useState(true);  
   
   const [index, setInd] = useState(0);
-  const [change, setchange] = useState(true);  
   let arr = props.arr;
   let aii = props.aii;
   let data = props.data;
@@ -154,7 +154,7 @@ const Main = (props) => {
   }
 //////////////////////////
   function filterDB() {  
-    const item = data.filter(function (arr) {
+    const item = DB.filter(function (arr) {
       if (arr.stt == "New") {
        return arr
       }
@@ -165,22 +165,27 @@ const Main = (props) => {
     setArray(datak("new",item).arr[index])
   }
 
-  function filterData(a, b) {  
-    const item = data.filter(function (arr) {
+  function filterData(a, b) { 
+    
+    document.querySelectorAll(".check button").forEach((el,i) => {
+      i!==0? el.classList.remove("active"): el.classList.add("active");
+    }); 
+    const item = DB.filter(function (arr) {
       if (arr.stt == a) {
        return arr
       }
     });
-    
+    runtime(0)
     localStorage.setItem(b, JSON.stringify(item))
     settemparr(datak(b,item).arr)
     setArray(datak(b,item).arr[0])
-    // setInd(0)
-  }
-   function filterNew(){
     setInd(0)
+    console.log(index); 
+  }
+   function filterNew(){        
+     setInd(0)
      filterData("New","new")
-    
+         
   }
    function filterDone(){
     setInd(0)
@@ -189,15 +194,18 @@ const Main = (props) => {
   }
   function filterDoing (){
     setInd(0)
-
     filterData("Doing","doing")
   }
   function filterAll (){
     console.log(index);
-    setInd(0)
+     document.querySelectorAll(".check button").forEach((el,i) => {
+      i!==index? el.classList.remove("active"): el.classList.add("active");
+    }); 
+    runtime(index)
     settemparr(props.arr)
     setArray(props.arr[index])
-
+    setInd(0) 
+    // setchange(!change)
   }
   ////////////////////////
 
@@ -219,7 +227,7 @@ const Main = (props) => {
         <div id="list" className="w-100">
           {<Todolist eventt={settxt} data={mainArray} />}
         </div> 
-        <div className="pagination mt-4  justify-content-center" style={{display : temparr.length < 1 ? "none": "flex"}} >
+        <div className="pagination mt-4  justify-content-center" style={{display : temparr.length <= 1 ? "none": "flex"}} >
             <button onClick={prer} id="pre" disabled={index==0 ? true : false}>Pre</button>
             <div className="check mx-auto">
                 {                   
