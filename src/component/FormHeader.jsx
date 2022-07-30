@@ -31,7 +31,7 @@ const FormHeader = props => {
             let data = datak("dataa", add()).dataTask
             data.push(b)
             localStorage.setItem("dataa", JSON.stringify(data));
-            console.log(data);
+            // console.log(data);
             setTitle("");
             setName("");
             setDess("");

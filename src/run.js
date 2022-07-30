@@ -4,9 +4,8 @@ export function datak(datalocal,rootdata){
    let itemdata = localStorage.getItem(datalocal)? JSON.parse(localStorage.getItem(datalocal)):[];
    let datae=localStorage.getItem(datalocal) ? []: rootdata;    
  
-       itemdata.forEach((e)=>{
-       datae.push(e)
-       })
+       itemdata.forEach((e)=>datae.push(e))
+       
    const limmit= 12
    datae.forEach((e, i) => {
        if ((i + 1) % limmit == 0 && i != 0) {

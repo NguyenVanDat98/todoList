@@ -5,9 +5,7 @@ import FormHeader from "../../component/FormHeader";
 import { useState } from "react";
 
 
-const Header = (props) => {
-  
-    
+const Header = (props) => {    
  
   return (
     <div className="header  bg-primary justify-content-between">

@@ -6,9 +6,6 @@ import { useState } from "react";
 // 
 function Todoitem(props) {
   const { title, name, dess,setevent , status ,txtBtn } = props;
-
-  
- 
   return (
     <div className="taskItem mx-2 my-2 px-2 py-2">
       <label>
