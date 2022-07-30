@@ -1,26 +1,31 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-
-
 import Sidebar from "../../component/sidebar";
 import "../style.css";
 import Todolist from "../../component/todolist";
 import { datak } from "../../run";
-import add from "../../data";
+
 
 const Main = (props) => {
   const [change, setchange] = useState(true);  
-  
+  const [temparr, settemparr] = useState(props.arr); 
   const [index, setInd] = useState(0);
-  let arr = props.arr;
+  const [ mainArray ,setArray] = useState(temparr[index])
+  
+  // let arr = props.arr;
   let aii = props.aii;
   let DB = props.data;
-
+  
   // const [DB, setdata] = useState(props.data);  
-  const [temparr, settemparr] = useState(props.arr);  
-  const [ mainArray ,setArray] = useState(temparr[index])
-console.log("DB",DB);
-// console.log(mainArray);
+  useEffect(()=>{
+     settemparr(props.arr)
+     setArray(temparr[index])
+    //  console.log("DB",DB);
+     console.log("data Far",props.arr);
+     console.log("arr temp",temparr);
+
+  },[props.arr])
+  
 
   temparr.forEach((e, i) => {
   e.forEach((a, index) => {
@@ -50,7 +55,7 @@ console.log("DB",DB);
       });
       setchange(!change);
     }
-///////change status data item MOD 222222  BEST CHOSE/////
+///////change status data item MOD 222222  BEST CHOOSE/////
   function settxt(e) {
     // console.log(e.target.id);
     mainArray.map((a, i) => {
@@ -68,9 +73,8 @@ console.log("DB",DB);
 
         console.log(a); 
         console.log(mainArray);
-        console.log("da",DB);
-        localStorage.setItem("dataa",JSON.stringify(DB))
-      
+        console.log("da", i, DB);
+        localStorage.setItem("dataa",JSON.stringify(DB))      
       }
     });
     setchange(!change);
