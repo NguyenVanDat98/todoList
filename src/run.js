@@ -6,6 +6,7 @@ export function datak(datalocal,rootdata){
  
        itemdata.forEach((e)=>datae.push(e))
        
+      
    const limmit= 12
    datae.forEach((e, i) => {
        if ((i + 1) % limmit == 0 && i != 0) {

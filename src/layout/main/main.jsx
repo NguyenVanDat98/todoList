@@ -4,94 +4,79 @@ import Sidebar from "../../component/sidebar";
 import "../style.css";
 import Todolist from "../../component/todolist";
 import { datak } from "../../run";
+import add from "../../data";
 
 
 const Main = (props) => {
-  const [change, setchange] = useState(true);  
-  const [temparr, settemparr] = useState(props.arr); 
+  const [change, setchange] = useState(true); 
+  const [Filter, setFil] = useState(false); 
+   
+  let DB = datak("dataa",add()).dataTask
+  let arr = datak("dataa",add()).arr
+  let aii = datak("dataa",add()).aii
+ 
   const [index, setInd] = useState(0);
+  const [temparr, settemparr] = useState(arr);  
   const [ mainArray ,setArray] = useState(temparr[index])
   
-  // let arr = props.arr;
-  let aii = props.aii;
-  let DB = props.data;
+  console.log(arr);
+  // console.log(arr[index]);
+  // kiểm tra mảng đang dc chọn có phần tử ko, duyệt các phần tử và thêm vào propertie btn cho mảng theo điều kiện
+  (mainArray || []).map((e, i) => {
+    e.btn = e.stt == "New" ? "Start" : e.stt == "Doing" ? "Done" : "Renew";
+    // console.log(e);
   
-  // const [DB, setdata] = useState(props.data);  
+    });
+  
+   //data sẽ được set lại khi data từ app được làm mới
   useEffect(()=>{
      settemparr(props.arr)
      setArray(temparr[index])
-    //  console.log("DB",DB);
-     console.log("data Far",props.arr);
-     console.log("arr temp",temparr);
+     console.log("DB",DB);
 
-  },[props.arr])
+  },[props.data])
   
-
-  temparr.forEach((e, i) => {
-  e.forEach((a, index) => {
-    a.btn = a.stt == "New" ? "Start" : a.stt == "Doing" ? "Done" : "Renew";
-  });
-  });
-
-///////change status data item MOD 111111/////
-
-    function settxtt(e) {
-      const allStatus = ["New", "Doing", "Done","Renew"]
-      temparr[index].map((a, i) => {
+///////change status data item/////
+  function settxt(e) {
+   
+      mainArray.map((a, i) => {
         if (i == e.target.id) {
-          let temp = 0;
-          allStatus.forEach((atus,index)=>{
-             if(a.stt == atus && temp==0 && a.stt!="Done"){
-              a.stt= allStatus[index+1]
-              a.btn = allStatus[index+2]
-              temp++            
-            }else if(a.stt == "Done" && temp==0 ){
-              a.stt= allStatus[0]
-              a.btn = allStatus[1]
+          if (a.stt == "New") {
+            a.stt = "Doing";
+            a.btn = "Done";
+          } else if (a.stt == "Doing") {
+            a.stt = "Done";
+            a.btn = "Renew";
+          } else {
+            a.stt = "New";
+            a.btn = "Doing";
+          }
+          //duyệt lại phần từ của DataBase rồi tìm index của phần tử bị change thay thế nó và set lên local
+          DB.map((ai,index)=>{
+            if(a.index==index){ 
+              console.log(ai);
+              console.log(a);
+              DB.splice(index,1,a )
             }
-          })
-          // console.log(a);
+          }) 
+          localStorage.setItem("dataa",JSON.stringify(DB))  
+          setchange(!change);
+
         }
       });
-      setchange(!change);
-    }
-///////change status data item MOD 222222  BEST CHOOSE/////
-  function settxt(e) {
-    // console.log(e.target.id);
-    mainArray.map((a, i) => {
-      if (i == e.target.id) {
-        if (a.stt == "New") {
-          a.stt = "Doing";
-          a.btn = "Done";
-        } else if (a.stt == "Doing") {
-          a.stt = "Done";
-          a.btn = "Renew";
-        } else {
-          a.stt = "New";
-          a.btn = "Doing";
-        }
-
-        console.log(a); 
-        console.log(mainArray);
-        console.log("da", i, DB);
-        localStorage.setItem("dataa",JSON.stringify(DB))      
-      }
-    });
-    setchange(!change);
+  
   }
-
+ // hàm này có tác dụng chia bố cục pagination
   function runtime(e){
-    // setchange(!change);
-    // console.log(index);
-    if (e<1){       
+    if (e<1){        //nếu trang đứng có index nhỏ hơn 1 thì nó sẽ ẩn đi các button có index<=2 
        document.querySelectorAll(".check button").forEach((el,indexx)=>{
             indexx<=2? el.style.display= "block": el.style.display= "none"
        })
-    }else if (e == temparr.length-1 ){   
+    }else if (e == temparr.length-1 ){   // nếu index đến giới hạn lớn nhất thì ẩn tất các button trừ 3 nút cuối gần cuối cùng
         document.querySelectorAll(".check button").forEach((el,indexx)=>{
             indexx<=temparr.length-4? el.style.display= "none": el.style.display= "block"
         })
-    }else {     
+    }else {     // các trường hợp còn lại của active button thì nó chỉ hiện nút button có index nhỏ hơn 1 đơn vị và button lớn hơn 1 đơn vị 
         document.querySelectorAll(".check button").forEach((el,indexx)=>{
             (indexx+2 > e && indexx-2 < e)? el.style.display= "block" : el.style.display= "none"
         })
@@ -160,12 +145,15 @@ const Main = (props) => {
  
 
   function filterData(a, b) { 
-    
+    setFil(true)
     document.querySelectorAll(".check button").forEach((el,i) => {
       i!==0? el.classList.remove("active"): el.classList.add("active");
     }); 
-    const item = DB.filter(function (arr) {
+    const item = DB.filter(function (arr,i) {
       if (arr.stt == a) {
+        console.log(i);
+        arr.index=i
+        // console.log(arr);
        return arr
       }
     });
@@ -174,7 +162,7 @@ const Main = (props) => {
     settemparr(datak(b,item).arr)
     setArray(datak(b,item).arr[0])
     setInd(0)
-    console.log(index); 
+    // console.log(index); 
   }
    function filterNew(){        
      setInd(0)
@@ -192,12 +180,13 @@ const Main = (props) => {
   }
   function filterAll (){
     console.log(index);
+    setFil(false)
      document.querySelectorAll(".check button").forEach((el,i) => {
       i!==index? el.classList.remove("active"): el.classList.add("active");
     }); 
     runtime(index)
-    settemparr(props.arr)
-    setArray(props.arr[index])
+    settemparr(arr)
+    setArray(arr[index])
     setInd(0) 
     // setchange(!change)
   }

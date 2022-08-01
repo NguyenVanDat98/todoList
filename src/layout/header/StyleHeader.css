@@ -55,6 +55,14 @@
   align-items: center;
   margin: 5px 20px;
 }
+.item-input label{
+  font-size: 1.2rem;
+  width: 27%;
+}
+.item-input textarea{
+  flex-grow: 1;
+  border-radius: 5px;
+}
 
 .item-input input {
   border-radius: 5px;

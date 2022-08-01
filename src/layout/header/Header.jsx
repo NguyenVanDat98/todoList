@@ -1,19 +1,20 @@
-import React, {  useEffect  } from "react";
-import PropTypes from "prop-types";
+import React  from "react";
+
 import "./StyleHeader.css";
-import FormHeader from "../../component/FormHeader";
-import { useState } from "react";
+import Form from "../../component/Form";
+import {Link} from 'react-router-dom';
+
 
 
 const Header = (props) => {    
- 
+//  console.log(props.change);
   return (
-    <div className="header  bg-primary justify-content-between">
-      <FormHeader handle={props.btn}  sty={props.tus} val={props.reVal}/>
-      <div className="home">
-        <button onClick={props.btn} type="button">
-          CREATE TODOITEM
-        </button>
+    <div className="header  bg-primary justify-content-between">      
+       <Form handle={props.btn}  sty={props.tus} val={props.reVal}/>  
+      <div className="home">        
+        
+         <Link to={props.change?"/form" :"/main" }> <button onClick={props.btn} type="button">{props.change ? "CREATE ADD" : "BACK" }</button>
+         </Link>
       </div>
       <div className="search">
         <input type="search" placeholder="Search" />
