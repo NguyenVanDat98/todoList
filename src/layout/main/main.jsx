@@ -8,9 +8,8 @@ import add from "../../data";
 
 
 const Main = (props) => {
-  const [change, setchange] = useState(true); 
-  const [Filter, setFil] = useState(false); 
-   
+  const [change, setchange] = useState(true);    
+  const [fil, setFil] = useState(false);    
   let DB = datak("dataa",add()).dataTask
   let arr = datak("dataa",add()).arr
   let aii = datak("dataa",add()).aii
@@ -18,13 +17,13 @@ const Main = (props) => {
   const [index, setInd] = useState(0);
   const [temparr, settemparr] = useState(arr);  
   const [ mainArray ,setArray] = useState(temparr[index])
+
   
-  console.log(arr);
+  console.table(arr[index]);
   // console.log(arr[index]);
   // kiểm tra mảng đang dc chọn có phần tử ko, duyệt các phần tử và thêm vào propertie btn cho mảng theo điều kiện
   (mainArray || []).map((e, i) => {
     e.btn = e.stt == "New" ? "Start" : e.stt == "Doing" ? "Done" : "Renew";
-    // console.log(e);
   
     });
   
@@ -32,13 +31,17 @@ const Main = (props) => {
   useEffect(()=>{
      settemparr(props.arr)
      setArray(temparr[index])
-     console.log("DB",DB);
+     console.dirxml("DB",DB);
 
   },[props.data])
   
 ///////change status data item/////
   function settxt(e) {
-   
+   if(fil){
+    DB.map((element,indexs)=>{
+      element.index = indexs
+    })
+   }
       mainArray.map((a, i) => {
         if (i == e.target.id) {
           if (a.stt == "New") {
@@ -54,8 +57,8 @@ const Main = (props) => {
           //duyệt lại phần từ của DataBase rồi tìm index của phần tử bị change thay thế nó và set lên local
           DB.map((ai,index)=>{
             if(a.index==index){ 
-              console.log(ai);
-              console.log(a);
+              console.log("ai",ai);
+              console.log("a",a);
               DB.splice(index,1,a )
             }
           }) 
@@ -145,7 +148,8 @@ const Main = (props) => {
  
 
   function filterData(a, b) { 
-    setFil(true)
+    setFil(false)
+
     document.querySelectorAll(".check button").forEach((el,i) => {
       i!==0? el.classList.remove("active"): el.classList.add("active");
     }); 
@@ -166,21 +170,22 @@ const Main = (props) => {
   }
    function filterNew(){        
      setInd(0)
-     filterData("New","new")
+     filterData("New","New")
          
   }
    function filterDone(){
     setInd(0)
-     filterData("Done","done")
+     filterData("Done","Done")
    
   }
   function filterDoing (){
     setInd(0)
-    filterData("Doing","doing")
+    filterData("Doing","Doing")
   }
   function filterAll (){
+    setFil(true)
     console.log(index);
-    setFil(false)
+
      document.querySelectorAll(".check button").forEach((el,i) => {
       i!==index? el.classList.remove("active"): el.classList.add("active");
     }); 

@@ -21,9 +21,9 @@ const App = props => {
  
   return (
     <div className='App'>
-      <Header  btn={btn} tus={tus} change={change}/>   
+      <Header  btn={btn} tus={tus} change={change}/>    
       <Routes>          
-        <Route path="/main" element={<Main  arr={data.arr} aii={data.aii}  data={data.dataTask}/>}/>
+        <Route path="/" element={<Main  arr={data.arr} aii={data.aii}  data={data.dataTask}/>}/>
         <Route path='/form' element={<Form/>}/>
         
        </Routes>
