@@ -33,9 +33,6 @@ DB.map((element,indexs)=>{
      setArray(dataArr[0])
   },[props.data])
   //duyệt DB và tạo thêm propertie .btn cho chính nó
- 
-    
-   
   
 ///////change status data item/////
   function settxt(e) {   
@@ -53,14 +50,12 @@ DB.map((element,indexs)=>{
           }
           //duyệt lại phần từ của DataBase rồi tìm index của phần tử bị change thay thế nó và set lên local
           DB.map((ai,index)=>{
-            a.index==index?
-              DB.splice(index,1,a ):console.log("");
+            a.index==index? DB.splice(index,1,a ):console.log("");
             
           }) 
           localStorage.setItem("dataa",JSON.stringify(DB))  
           setchange(!change);
-          // settemparr(arr)
-          // setArray(arr[index])
+          
         }
       });
   

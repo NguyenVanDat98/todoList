@@ -7,27 +7,29 @@ import add from "./data";
 import { datak } from "./run";
 import { Routes, Route } from "react-router-dom";
 import Form from "./component/Form";
-
+import Todoitem from "./component/todoitem";
 
 const App = (props) => {
   const [change, setchange] = useState(true);
   const [data, setData] = useState(datak("dataa", add()));
   const [tus, settus] = useState("none");
-  
+  const { dataTask:DB } = datak("dataa", add())
+
   function btn() {
     setchange(!change);
     setData(datak("dataa", add()));
   }
   function search(e) {
-    let valuee = e.target.value.toLowerCase().trim()
-    console.log(valuee);
-    let temp = (datak("dataa", add()).dataTask).filter((element) => {
+    let valuee = e.target.value.toLowerCase().trim();
+
+    let temp = datak("dataa", add()).dataTask.filter((element) => {
       let isValid =
-        element.title.toLowerCase().includes(valuee)||
-        element.name.toLowerCase().includes(valuee)||
-        element.mess.toLowerCase().includes(valuee)||
+        element.title.toLowerCase().includes(valuee) ||
+        element.name.toLowerCase().includes(valuee) ||
+        element.mess.toLowerCase().includes(valuee) ||
         element.stt.toLowerCase().includes(valuee);
-      if (isValid) { return element;
+      if (isValid) {
+        return element;
       }
     });
     setData(datak("tempSearch", temp));
@@ -38,10 +40,31 @@ const App = (props) => {
       <Header search={search} btn={btn} tus={tus} change={change} />
       <Routes>
         <Route
-          path="/"
+          path="/learn/"
           element={<Main arr={data.arr} aii={data.aii} data={data.dataTask} />}
-        />
-        <Route path="/form" element={<Form handle={btn} />} />
+        ></Route>
+        <Route path="/learn/form" element={<Form handle={btn} />} />
+        {DB.map((element, index) => 
+          <Route key={index}
+            path={`/learn/${index + 1}`}
+            element={
+              <Todoitem 
+                title={element.title}
+                name={element.name}
+                mess={element.mess}
+                status={element.stt}
+                txtBtn={
+                  (element.btn =
+                    element.stt == "New"
+                      ? "Start"
+                      : element.stt == "Doing"
+                      ? "Done"
+                      : "Renew")
+                }
+              />
+            }
+          />
+        )}
       </Routes>
     </div>
   );
