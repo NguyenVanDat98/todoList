@@ -52,7 +52,7 @@ function check(val){
     }    
 
     return (
-        <form onSubmit={handleSubmit} method='GET' className='formHeader'>
+        <form  className='formHeader'>
             <div className='item-input'>
                 <label htmlFor="title">Title :</label>
                 <input type="text" onChange={e=>{setTitle(e.target.value)} } value={title} id="title" />
