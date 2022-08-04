@@ -1,5 +1,26 @@
+export function datak(datalocal,rootdata){
+    let arr=[]; 
+   let itemdata = localStorage.getItem(datalocal)? JSON.parse(localStorage.getItem(datalocal)):[];
+   let datae=localStorage.getItem(datalocal) ? []: rootdata;    
+ 
+       itemdata.forEach((e)=>datae.push(e))
+       
+      
+   const limmit= 12
+   datae.forEach((e, i) => {
+       if ((i + 1) % limmit == 0 && i != 0) {
+         arr.push(datae.slice(i - (limmit-1), i + 1));
+       }
+       if (i == datae.length - 1) {
+         if ((i + 1) % limmit !== 0) {
+           arr.push(datae.slice(i + 1 - ((i + 1) % limmit)));
+         }
+       }
+     });
+ return {dataTask: datae , arr:arr}
+}
 
-function add() {
+export function add() {
   return [    
     { title: "1", name: "v", mess: "j" , stt: "New"},
     { title: "2", name: "v", mess: "j" , stt: "Done"},
@@ -61,6 +82,19 @@ function add() {
    
   ];
 }
-export default add;
+export function runtime(e,temparr){
 
-
+  if (e<1){        //nếu trang đứng có index nhỏ hơn 1 thì nó sẽ ẩn đi các button có index<=2 
+     document.querySelectorAll(".check button").forEach((el,indexx)=>{
+          indexx<=2? el.style.display= "block": el.style.display= "none"
+     })
+  }else if (e == temparr.length-1 ){   // nếu index đến giới hạn lớn nhất thì ẩn tất các button trừ 3 nút cuối gần cuối cùng
+      document.querySelectorAll(".check button").forEach((el,indexx)=>{
+          indexx<=temparr.length-4? el.style.display= "none": el.style.display= "block"
+      })
+  }else {     // các trường hợp còn lại của active button thì nó chỉ hiện nút button có index nhỏ hơn 1 đơn vị và button lớn hơn 1 đơn vị 
+      document.querySelectorAll(".check button").forEach((el,indexx)=>{
+          (indexx+2 > e && indexx-2 < e)? el.style.display= "block" : el.style.display= "none"
+      })
+  }
+}

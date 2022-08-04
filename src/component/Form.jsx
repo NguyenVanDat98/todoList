@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import add from '../data';
-import { datak } from '../run';
+
+import { add, datak } from '../common/common';
 import { useNavigate } from "react-router-dom";
 
 const Form = props => {
@@ -17,21 +17,12 @@ function check(val){
     let data = datak("dataa", add()).dataTask
     let a=0
     data.forEach(element => {
-        if(element.title==val){
-            a++;
-         }
+        if(element.title==val){ a++;  }
     });
-    if(a>0){
-        return true
-    }else{
-        return false
-    }    
-
+    return a>0 ? true: false;
 }
     function handleSubmit(e){  
-        e.preventDefault()
-      console.table(check(title))
-        let a=0;      
+        e.preventDefault()     
         if (title == "" || name=="" ||mess=="") {
              alert( "không được để trống");                 
         } 

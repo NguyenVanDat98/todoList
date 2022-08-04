@@ -24,14 +24,14 @@
     display: block;
     margin: 0 auto;
   }
-  .main-layout{
+.main-layout{
     flex-grow: 1;
     display: block;
     width: 100%;
     height: max-content;
   }
  
-  .side{
+.side{
     width: 100%;   
 }
 
@@ -67,6 +67,16 @@
   a:hover{
     text-decoration: none;
   }
+  .btn-secondary{
+    background-color: rgb(190, 102, 30);
+    border-radius: 0px;
+  }
+.sidebarList {
+  width: 20%;
+  align-self: stretch;
+
+  background-color: rgb(255, 137, 41);
+}
   .taskItem p{    
     width: 100%;
     height: 56px;
@@ -80,12 +90,14 @@
   .taskItem>div{
     border-top: 1px solid black;
   }
-  @media (max-width:479px) {
+  @media (max-width:720px) {
     .main{
     grid-template-columns: repeat(1,1fr);
     /* grid-template-rows: repeat(12,1fr); */
     }
-  
+    .sidebarList {
+      min-width: 102px;
+    }
    
   }
   @media (min-width:480px) {
@@ -95,13 +107,13 @@
     }
    
   }
-  @media (min-width:720px) {
+  @media (min-width:610px) {
     .main{
     grid-template-columns: repeat(2,1fr);
     /* grid-template-rows: repeat(6,1fr); */
     }
   }
-  @media (min-width:960px) {
+  @media (min-width:850px) {
     .main{
     grid-template-columns: repeat(3,1fr);
     /* grid-template-rows: repeat(4,1fr); */
@@ -127,15 +139,6 @@
     }
     
   }
-  .btn-secondary{
-    background-color: rgb(190, 102, 30);
-    border-radius: 0px;
-  }
-.sidebarList {
-  width: 20%;
-  align-self: stretch;
-
-  background-color: rgb(255, 137, 41);
-}
+ 
 
  

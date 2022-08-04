@@ -1,9 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useState } from "react";
 
-
-// 
 function Todoitem(props) {
   const { title, name, dess,setevent, status ,txtBtn } = props;
   return (

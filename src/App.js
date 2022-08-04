@@ -1,28 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "./layout/header/Header";
 import Main from "./layout/main/main";
 
 import "./App.css";
-import add from "./data";
-import { datak } from "./run";
+
 import { Routes, Route } from "react-router-dom";
 import Form from "./component/Form";
 import Todoitem from "./component/todoitem";
+import { add, datak } from "./common/common";
 
 const App = (props) => {
-  const [change, setchange] = useState(true);
+  const [change, setchange] = useState(true);  
   const [data, setData] = useState(datak("dataa", add()));
-  const [tus, settus] = useState("none");
   const { dataTask:DB } = datak("dataa", add())
 
   function btn() {
     setchange(!change);
     setData(datak("dataa", add()));
   }
+
   function search(e) {
     let valuee = e.target.value.toLowerCase().trim();
-
-    let temp = datak("dataa", add()).dataTask.filter((element) => {
+    let temp = DB.filter((element) => {
       let isValid =
         element.title.toLowerCase().includes(valuee) ||
         element.name.toLowerCase().includes(valuee) ||
@@ -37,21 +36,21 @@ const App = (props) => {
 
   return (
     <div className="App">
-      <Header search={search} btn={btn} tus={tus} change={change} />
+      <Header search={search} btn={btn} change={change} />
       <Routes>
         <Route
           path="/learn/"
-          element={<Main arr={data.arr} aii={data.aii} data={data.dataTask} />}
+          element={<Main data={data} />}
         ></Route>
         <Route path="/learn/form" element={<Form handle={btn} />} />
         {DB.map((element, index) => 
           <Route key={index}
-            path={`/learn/${index + 1}`}
+            path={`/learn/${index+1}`}
             element={
               <Todoitem 
                 title={element.title}
                 name={element.name}
-                mess={element.mess}
+                dess={element.mess}
                 status={element.stt}
                 txtBtn={
                   (element.btn =
