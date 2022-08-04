@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import Todoitem from "./todoitem";
 
 const Todolist = (props) => {
-
-
-let data = props.data ? props.data : [];
+  
+  let data = props.data ? props.data : [];
+  console.table(data);
 
   return (
     <div className="main m-3 flex-wrap">

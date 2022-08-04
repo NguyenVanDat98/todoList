@@ -1,9 +1,10 @@
-import React  from "react";
+import React, { useEffect, useState }  from "react";
 
 import "./StyleHeader.scss";
 import {Link} from 'react-router-dom';
 
-const Header = (props) => {    
+const Header = (props) => { 
+
 //  console.log(props.change);
   return (
     <div className="header  bg-primary justify-content-between">           
@@ -12,8 +13,8 @@ const Header = (props) => {
          </Link>
       </div>
       <div className="search">
-        <input type="search" placeholder="Search" />
-        <button>Search</button>
+        <input type="search"  onKeyUp={props.search}  placeholder="Search"/>
+        <button   >Search</button>
       </div>
     </div>
   );

@@ -8,41 +8,38 @@ import add from "../../data";
 
 
 const Main = (props) => {
-  const [change, setchange] = useState(true);    
-  const [fil, setFil] = useState(false);    
-  let DB = datak("dataa",add()).dataTask
-  let arr = datak("dataa",add()).arr
-  let aii = datak("dataa",add()).aii
- 
-  const [index, setInd] = useState(0);
+  const [change, setchange] = useState(true);
+let {dataTask:DB,arr:arr,aii:aii} = datak("dataa",add())
+   const [index, setInd] = useState(0);
+DB.map((element,indexs)=>{
+  element.index = indexs
+  element.btn = element.stt == "New" ? "Start" : element.stt == "Doing" ? "Done" : "Renew";  
+})
+
   const [temparr, settemparr] = useState(arr);  
   const [ mainArray ,setArray] = useState(temparr[index])
 
-  
-  console.table(arr[index]);
-  // console.log(arr[index]);
-  // kiểm tra mảng đang dc chọn có phần tử ko, duyệt các phần tử và thêm vào propertie btn cho mảng theo điều kiện
-  (mainArray || []).map((e, i) => {
-    e.btn = e.stt == "New" ? "Start" : e.stt == "Doing" ? "Done" : "Renew";
-  
-    });
-  
-   //data sẽ được set lại khi data từ app được làm mới
-  useEffect(()=>{
-     settemparr(props.arr)
-     setArray(temparr[index])
-     console.dirxml("DB",DB);
 
+//data sẽ được set lại khi data từ app được làm mới
+  useEffect(()=>{
+    const dataArr = props.arr
+    dataArr.map((a,i)=>{
+      a.map((ai,index)=>{
+       ai.btn = ai.stt == "New" ? "Start" : ai.stt == "Doing" ? "Done" : "Renew";  
+      })
+    })
+     settemparr(dataArr)
+     setInd(0)
+     setArray(dataArr[0])
   },[props.data])
+  //duyệt DB và tạo thêm propertie .btn cho chính nó
+ 
+    
+   
   
 ///////change status data item/////
-  function settxt(e) {
-   if(fil){
-    DB.map((element,indexs)=>{
-      element.index = indexs
-    })
-   }
-      mainArray.map((a, i) => {
+  function settxt(e) {   
+    temparr[index].map((a, i) => {
         if (i == e.target.id) {
           if (a.stt == "New") {
             a.stt = "Doing";
@@ -56,15 +53,14 @@ const Main = (props) => {
           }
           //duyệt lại phần từ của DataBase rồi tìm index của phần tử bị change thay thế nó và set lên local
           DB.map((ai,index)=>{
-            if(a.index==index){ 
-              console.log("ai",ai);
-              console.log("a",a);
-              DB.splice(index,1,a )
-            }
+            a.index==index?
+              DB.splice(index,1,a ):console.log("");
+            
           }) 
           localStorage.setItem("dataa",JSON.stringify(DB))  
           setchange(!change);
-
+          // settemparr(arr)
+          // setArray(arr[index])
         }
       });
   
@@ -95,7 +91,6 @@ const Main = (props) => {
       } ;
     });
     runtime(e.target.id);
-
     document.querySelectorAll(".check button").forEach((el) => {
       el.classList.remove("active");
     });
@@ -120,7 +115,6 @@ const Main = (props) => {
           setInd(index+1)
       };
   }
-
 
   /////////////////BUTTON PER////////////////////
   function prer() {
@@ -148,52 +142,42 @@ const Main = (props) => {
  
 
   function filterData(a, b) { 
-    setFil(false)
-
+    
     document.querySelectorAll(".check button").forEach((el,i) => {
       i!==0? el.classList.remove("active"): el.classList.add("active");
     }); 
     const item = DB.filter(function (arr,i) {
       if (arr.stt == a) {
-        console.log(i);
-        arr.index=i
-        // console.log(arr);
        return arr
       }
     });
     runtime(0)
+    // console.table(item);
     localStorage.setItem(b, JSON.stringify(item))
+
     settemparr(datak(b,item).arr)
     setArray(datak(b,item).arr[0])
     setInd(0)
     // console.log(index); 
   }
-   function filterNew(){        
-     setInd(0)
-     filterData("New","New")
-         
+   function filterNew(){            
+     filterData("New","New")         
   }
-   function filterDone(){
-    setInd(0)
-     filterData("Done","Done")
-   
+   function filterDone(){  
+     filterData("Done","Done")   
   }
   function filterDoing (){
-    setInd(0)
     filterData("Doing","Doing")
   }
   function filterAll (){
-    setFil(true)
-    console.log(index);
-
-     document.querySelectorAll(".check button").forEach((el,i) => {
+    document.querySelectorAll(".check button").forEach((el,i) => {
       i!==index? el.classList.remove("active"): el.classList.add("active");
     }); 
     runtime(index)
     settemparr(arr)
     setArray(arr[index])
     setInd(0) 
-    // setchange(!change)
+
   }
   ////////////////////////
 
@@ -213,15 +197,15 @@ const Main = (props) => {
       <div className="main-layout" id="mainContent">
 
         <div id="list" className="w-100">
-          {<Todolist eventt={settxt} data={mainArray} />}
+          {<Todolist eventt={settxt} data={temparr[index]} />}
         </div> 
         <div className="pagination mt-4  justify-content-center" style={{display : temparr.length <= 1 ? "none": "flex"}} >
             <button onClick={prer} id="pre" disabled={index==0 ? true : false}>Pre</button>
             <div className="check mx-auto">
                 {                   
-                temparr.map((arc, i) => (                    
+                temparr.map((arc, i) =>                
                       <button onClick={clickk} key={i} className={i==0 ?"active":""} style={{display : i>2 ?"none":"block"}} id={i}> {i+1}   </button>                     
-                ))
+                )
                 }
              </div>
             <button onClick={nexts} id="next" disabled={index==temparr.length-1 ? true : false}>Next {index+1}/{temparr.length}</button>

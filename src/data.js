@@ -12,7 +12,7 @@ function add() {
     { title: "9", name: "v", mess: "j" , stt: "New"},
     { title: "10", name: "v", mess: "j" , stt: "New"},
     { title: "11", name: "v", mess: "j" , stt: "New"},  
-    { title: "12", name: "v", mess: "adsasddasdasdasdasdasdasdasda asd asd as asd as as dasd asd asa  asd asd as asd asd as" },
+    { title: "12", name: "v", stt: "New", mess: "adsasddasdasdasdasdasdasdasda asd asd as asd as as dasd asd asa  asd asd as asd asd as" },
     { title: "13", name: "v", mess: "j" , stt: "New"},
     
     { title: "26", name: "v", mess: "j" , stt: "New"},
@@ -58,7 +58,7 @@ function add() {
     { title: "27", name: "v", mess: "j" , stt: "New"},    
     { title: "28", name: "v", mess: "j" , stt: "New"},    
     { title: "28", name: "v", mess: "j" , stt: "New"},    
-    { title: "29", name: "v", mess: "adsasddasdasdasdasdasdasdasda asd asd as asd as as dasd asd asa  asd asd as asd asd as" },   
+    { title: "29", name: "v",stt: "New", mess: "adsasddasdasdasdasdasdasdasda asd asd as asd as as dasd asd asa  asd asd as asd asd as" },   
    
   ];
 }
