@@ -4,6 +4,32 @@
     width: 200px;
     margin-left: 20px;
     line-height: 1.4rem;
+    position: relative;
+  }
+  .selectItem::after{
+    content: "";
+    position: absolute;
+    font-size: 0px;
+    top: 0;
+    right: 0;
+    display: block;
+    border-radius: 0 0 0 50%  ;
+    background-color: brown;
+    width: 00px;
+    height: 0px;
+    transition: all ease 0.2s;
+  }
+  
+  .selectItem:hover::after{
+    content: "👌";
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    font-size: 30px;   
+    background-color: rgb(22, 112, 22);
+    transform: rotate(45);
+    width: 50px;
+    height: 50px;
   }
   .header {
     width: 100%;
@@ -35,6 +61,18 @@
     width: 100%;   
 }
 
+.side>.checkkktrue {
+background-color: rgb(22, 112, 22);
+  position: relative;
+  width: 100%;
+  transform: scaleX(100%);
+  transition: all linear .5s;
+}
+
+.checkkktrue:focus{
+  width: 100%;
+  background-color: rgba(22, 112, 22, 0);
+}
 .side >button{
     height: 50px;
     width: 100%;
@@ -54,15 +92,24 @@
     color: red;
     font-weight: 800;
   }
+  .done{
+    background-color: rgb(255, 81, 0);
+  }
   .Doing {
     color: blue;
     font-weight: 800;
-
+  }
+  .doing {
+    background-color: blue;
   }
   .New {
     color: green;
     font-weight: 800;
-
+  }
+ 
+  .new{
+    /* background-color: whi; */
+    background-color: green;
   }
   a:hover{
     text-decoration: none;

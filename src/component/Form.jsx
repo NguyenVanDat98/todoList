@@ -37,8 +37,8 @@ function check(val){
             setTitle("");
             setName("");
             setDess("");
-            navigate("/");
             handle()
+            navigate("/learn/");
             }            
     }    
 

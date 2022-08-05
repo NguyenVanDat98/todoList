@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 
 function Todoitem(props) {
   const { title, name, dess,setevent, status ,txtBtn } = props;
+
   return (
-    <div className="taskItem mx-2 my-2 px-2 py-2">
+    <div className={`taskItem mx-2 my-2 px-2 py-2 ${props.select? "selectItem":""}`} id={(props.index*12)+ props.iid }>
       <label>
         Title : <a> {title}</a>
       </label>
@@ -21,7 +22,7 @@ function Todoitem(props) {
         Desscription:
         <p>{dess}</p>
       </div>
-      <button id={props.iid}  className="btn-primary" onClick={setevent}>
+      <button id={props.iid}  className={ ` ${status.toLowerCase()}`}  onClick={setevent}>
         {txtBtn}
       </button>
     </div>

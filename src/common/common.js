@@ -1,10 +1,9 @@
 export function datak(datalocal,rootdata){
     let arr=[]; 
    let itemdata = localStorage.getItem(datalocal)? JSON.parse(localStorage.getItem(datalocal)):[];
-   let datae=localStorage.getItem(datalocal) ? []: rootdata;    
+   let datae=localStorage.getItem(datalocal) ? []: rootdata;   
  
-       itemdata.forEach((e)=>datae.push(e))
-       
+       itemdata.forEach((e)=>datae.push(e))     
       
    const limmit= 12
    datae.forEach((e, i) => {
@@ -83,7 +82,7 @@ export function add() {
   ];
 }
 export function runtime(e,temparr){
-
+  
   if (e<1){        //nếu trang đứng có index nhỏ hơn 1 thì nó sẽ ẩn đi các button có index<=2 
      document.querySelectorAll(".check button").forEach((el,indexx)=>{
           indexx<=2? el.style.display= "block": el.style.display= "none"
@@ -97,4 +96,5 @@ export function runtime(e,temparr){
           (indexx+2 > e && indexx-2 < e)? el.style.display= "block" : el.style.display= "none"
       })
   }
+
 }

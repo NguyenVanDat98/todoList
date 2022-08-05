@@ -8,6 +8,11 @@ import { add, datak, runtime } from "../../common/common";
 
 const Main = (props) => {
   const [change, setchange] = useState(true);
+  const [selectItem, setSelect] = useState(false);
+  const [selectLength, setSelectLength] = useState(0);
+
+
+  const [check, setCheck] = useState([]);
   const [index, setInd] = useState(0);
 
   let {dataTask:DB,arr:arr} = datak("dataa",add())
@@ -20,6 +25,64 @@ const Main = (props) => {
   // const [mainArray, setArray] = useState(temparr[index]); 
 
 
+useEffect(()=>{
+  document.querySelectorAll(".taskItem").forEach((element,i)=>{
+    check.includes(parseInt(element.id))?element.style.backgroundColor="rgba(31, 82, 129, 0.205)" : element.style.backgroundColor="white"
+    })
+},[index||change])
+useEffect(()=>{
+  console.log("mouseting");
+  let arrChecked=check;
+
+  const handleClick=(e)=>{ 
+    console.dir(e.target); 
+    let indexChecked = parseInt(e.target.id) 
+    let ee=document.getElementById(`${indexChecked}`)   
+    console.log(index);
+    if (arrChecked.includes(indexChecked)) {
+      ee.style.backgroundColor = "white";      
+        arrChecked.splice(arrChecked.indexOf(indexChecked),1)
+    }else if(!isNaN(indexChecked)){
+     ee.style.backgroundColor = "rgba(31, 82, 129, 0.205)";
+      arrChecked.push(indexChecked);      
+    }
+    setSelectLength(arrChecked.length)
+    setCheck(arrChecked)
+
+    console.log(arrChecked);
+  }
+  console.log(selectItem);
+if(selectItem){  
+  document.querySelector("#listToDo").addEventListener("click",handleClick)
+}
+  
+return ()=>{
+    console.log("unmo");
+    if(selectItem){ 
+  document.querySelector("#listToDo").removeEventListener("click",handleClick)
+    }
+}
+},[selectItem])
+
+const deleteSelect=()=>{
+  console.log("delete", check);
+  let thumnalDelete = DB.filter((a)=>{
+    let isvalid = check.includes(a.index)
+   return !isvalid ? a : false
+  })
+  let thumnaltrash= DB.filter((a)=>{
+    let isvalid = check.includes(a.index)
+   return isvalid ? a : false
+  })
+  console.log(thumnalDelete);
+  localStorage.setItem("dataa",JSON.stringify(thumnalDelete))
+  localStorage.setItem("trash",JSON.stringify(thumnaltrash))
+  settemparr(datak("dataa",add()).arr)
+  setSelect(!selectItem)
+  setCheck([])
+  setSelectLength(0)
+  setchange(!change)
+}
 //data sẽ được set lại khi data từ app được làm mới
   useEffect(()=>{
     const dataArr = props.data.arr
@@ -50,7 +113,7 @@ const Main = (props) => {
           }
           //duyệt lại phần từ của DataBase rồi tìm index của phần tử bị change thay thế nó và set lên local
           DB.map((ai,index)=>{
-            a.index==index? DB.splice(index,1,a ):console.log("");
+            a.index==index? DB.splice(index,1,a ):console.log();;
             
           }) 
           localStorage.setItem("dataa",JSON.stringify(DB))  
@@ -80,6 +143,7 @@ const Main = (props) => {
 ///////////////BUTTON NEXT///////////////////
   function nexts(){
     let temp=0;
+
     runtime(index, temparr);
       if(index!==temparr.length-1){
         document.querySelectorAll(".check button").forEach((el) => {
@@ -94,6 +158,7 @@ const Main = (props) => {
           // setArray(temparr[index+1])
           setInd(index+1)
       };
+
   }
 
   /////////////////BUTTON PER////////////////////
@@ -101,6 +166,13 @@ const Main = (props) => {
     let temp = 0;
     let cont;
     runtime(index, temparr);
+    console.log(check);
+    document.querySelectorAll(".taskItem").forEach((element,i)=>{
+      check.forEach((el,ii)=>{
+        check.includes(element.id)? element.style.backgroundColor = "rgba(31, 82, 129, 0.205)": element.style.backgroundColor = "white"
+      })
+      
+    })
       if(index!==0){
         document.querySelectorAll(".check button").forEach((el,i) => {
                 if(el.classList.contains("active")){
@@ -167,11 +239,16 @@ const Main = (props) => {
         <Sidebar handbal={filterDone}   title={"Sort Done"} />
         <Sidebar handbal={filterDoing}  title={"Sort Doing"} />
         <Sidebar handbal={filterNew}    title={"Sort New"} />
+        <Sidebar handbal={()=>setSelect(!selectItem)} clazz={`${selectItem}`}  title={`Select ${selectItem? "On": "" }`} />
+        <div style={{fontSize : "18px",fontWeight: "bold", textAlign : "center"}}>  {selectLength==0?"":`Select : ${selectLength}`}</div>
+        <div> 
+          <button style={{display : selectItem?"block":"none"}} onClick={deleteSelect}>Detele</button>
+        </div>
       </div>
       <div className="main-layout" id="mainContent">
 
         <div id="list" className="w-100">
-          {<Todolist eventt={settxt} data={temparr[index]} />}
+          {<Todolist eventt={settxt} select={selectItem} index={index} data={temparr[index]} />}
         </div> 
         <div className="pagination mt-4  justify-content-center" style={{display : temparr.length <= 1 ? "none": "flex"}} >
             <button onClick={prer} id="pre" disabled={index==0 ? true : false}>Pre</button>

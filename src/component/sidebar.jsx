@@ -5,7 +5,7 @@ const Sidebar = props => {
 
     return (
         <div className='side'>
-            <button className='btn btn-secondary' id={props.dataSet} onClick={props.handbal} >{props.title}</button>
+            <button className={`btn btn-secondary checkkk${props.clazz}`} id={props.dataSet} onClick={props.handbal} >{props.title}</button>
         </div>
     );
 };
