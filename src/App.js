@@ -11,12 +11,17 @@ import { add, datak } from "./common/common";
 
 const App = (props) => {
   const [change, setchange] = useState(true);  
-  const [data, setData] = useState(datak("dataa", add()));
   const { dataTask:DB } = datak("dataa", add())
+  DB.map((element,i)=>{
+    element.index=i
+     element.btn = element.stt == "New" ? "Start" : element.stt == "Doing" ? "Done" : "Renew";  
+})
 
+
+  const [data, setData] = useState(datak("dataa", DB));
   function btn() {
     setchange(!change);
-    setData(datak("dataa", add()));
+    setData(datak("dataa", DB));
   }
 
   function search(e) {
@@ -40,7 +45,7 @@ const App = (props) => {
       <Routes>
         <Route
           path="/learn/"
-          element={<Main data={data} />}
+          element={<Main btn={btn} data={data} />}
         ></Route>
         <Route path="/learn/form" element={<Form handle={btn} />} />
         {DB.map((element, index) => 

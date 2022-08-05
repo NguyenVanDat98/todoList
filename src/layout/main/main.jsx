@@ -10,8 +10,6 @@ const Main = (props) => {
   const [change, setchange] = useState(true);
   const [selectItem, setSelect] = useState(false);
   const [selectLength, setSelectLength] = useState(0);
-
-
   const [check, setCheck] = useState([]);
   const [index, setInd] = useState(0);
 
@@ -21,9 +19,7 @@ const Main = (props) => {
       element.btn = element.stt == "New" ? "Start" : element.stt == "Doing" ? "Done" : "Renew";  
     })
 
-  const [temparr, settemparr] = useState(arr); 
-  // const [mainArray, setArray] = useState(temparr[index]); 
-
+  const [temparr, settemparr] = useState(props.data.arr); 
 
 useEffect(()=>{
   document.querySelectorAll(".taskItem").forEach((element,i)=>{
@@ -43,7 +39,7 @@ useEffect(()=>{
       ee.style.backgroundColor = "white";      
         arrChecked.splice(arrChecked.indexOf(indexChecked),1)
     }else if(!isNaN(indexChecked)){
-     ee.style.backgroundColor = "rgba(31, 82, 129, 0.205)";
+     ee.style.backgroundColor = "rgba(233, 215, 17, 0.878)";
       arrChecked.push(indexChecked);      
     }
     setSelectLength(arrChecked.length)
@@ -63,6 +59,17 @@ return ()=>{
     }
 }
 },[selectItem])
+const BackSelect=()=>{
+console.log(DB);
+let trash = datak("trash",[]).arr
+settemparr(datak("trash",[]).arr)
+setSelectLength(0)
+setCheck([])
+
+setSelect(!selectItem)
+
+console.table(trash);
+}
 
 const deleteSelect=()=>{
   console.log("delete", check);
@@ -75,14 +82,20 @@ const deleteSelect=()=>{
    return isvalid ? a : false
   })
   console.log(thumnalDelete);
+  thumnalDelete.map((a,i)=>{a.index=i})
+  thumnaltrash.map((a,i)=>{a.index=i})
   localStorage.setItem("dataa",JSON.stringify(thumnalDelete))
   localStorage.setItem("trash",JSON.stringify(thumnaltrash))
   settemparr(datak("dataa",add()).arr)
+
   setSelect(!selectItem)
   setCheck([])
   setSelectLength(0)
   setchange(!change)
+  props.btn();  
 }
+
+
 //data sẽ được set lại khi data từ app được làm mới
   useEffect(()=>{
     const dataArr = props.data.arr
@@ -241,8 +254,10 @@ const deleteSelect=()=>{
         <Sidebar handbal={filterNew}    title={"Sort New"} />
         <Sidebar handbal={()=>setSelect(!selectItem)} clazz={`${selectItem}`}  title={`Select ${selectItem? "On": "" }`} />
         <div style={{fontSize : "18px",fontWeight: "bold", textAlign : "center"}}>  {selectLength==0?"":`Select : ${selectLength}`}</div>
-        <div> 
-          <button style={{display : selectItem?"block":"none"}} onClick={deleteSelect}>Detele</button>
+        <div style={{display : selectItem?"flex":"none"}} className="listButton"> 
+          <button  onClick={deleteSelect}>Detele</button>
+          <button  onClick={BackSelect}>Old Step</button>
+          <button  >Trash</button>
         </div>
       </div>
       <div className="main-layout" id="mainContent">
