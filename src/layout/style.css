@@ -17,11 +17,12 @@
     background-color: brown;
     width: 00px;
     height: 0px;
-    transition: all ease 0.2s;
+    transition: all ease 0.2s ;
   }
   
   .selectItem:hover::after{
     content: "👌";
+    cursor: pointer;
     color: white;
     text-align: center;
     line-height: 40px;
@@ -78,7 +79,7 @@
   font-size: 14px;
   margin-top: 5px;
   border-radius: 0 10px 10px 0;
-  transition: all ease .3s;
+  transition: all ease .3s .1s;
 }
 .listButton>button:hover{
 width: 100%;
@@ -125,7 +126,6 @@ background-color: rgb(47, 61, 255);
   }
  
   .new{
-    /* background-color: whi; */
     background-color: green;
   }
   a:hover{
@@ -138,7 +138,6 @@ background-color: rgb(47, 61, 255);
 .sidebarList {
   width: 20%;
   align-self: stretch;
-
   background-color: rgb(255, 137, 41);
 }
   .taskItem p{    

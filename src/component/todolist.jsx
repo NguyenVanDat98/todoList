@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React  from "react";
 import PropTypes from "prop-types";
 import Todoitem from "./todoitem";
 
@@ -10,7 +10,7 @@ const Todolist = (props) => {
     <div id="listToDo"  className="main m-3 flex-wrap">
       {data.map((arr, i) => (
         <Todoitem
-          iid={i}
+          iid={arr.id}
           key={i}
           select={props.select}
           setevent={props.eventt}
@@ -19,7 +19,7 @@ const Todolist = (props) => {
           dess={arr.mess}
           name={arr.name}
           txtBtn={arr.btn}
-          index={props.index}
+          index={i}
         />
       ))}
     </div>

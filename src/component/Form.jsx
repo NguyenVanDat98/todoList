@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { add, datak } from '../common/common';
+import { add, datak, makeId } from '../common/common';
 import { useNavigate } from "react-router-dom";
 
 const Form = props => {
@@ -30,7 +30,7 @@ function check(val){
             setDis("block")
         }else {
             setDis("none")
-            let dataItem={title,name,mess ,stt:"New",btn:"Start"};
+            let dataItem={title,name,mess ,stt:"New",btn:"Start" , id: makeId(12)};
             let data = datak("dataa", add()).dataTask
             data.push(dataItem)
             localStorage.setItem("dataa", JSON.stringify(data));
