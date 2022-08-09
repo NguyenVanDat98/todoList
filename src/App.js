@@ -13,19 +13,13 @@ const App = (props) => {
   const [change, setchange] = useState(true);
   const {dataTask: DataApp} = datak("dataa", add());
   const [data, setData] = useState(datak("dataa", add()));
-// console.log(DataApp.dataTask.length);
-  useEffect(() => {
-    
+
+  useEffect(() => {    
       DataApp.map((element, i) => {
         if(!element.hasOwnProperty("id")){
             element.id = makeId(12);
-        }       
-        element.btn =
-          element.stt == "New"
-            ? "Start"
-            : element.stt == "Doing"
-            ? "Done"
-            : "Renew";
+        }      
+        element.btn = element.stt == "New" ? "Start" : element.stt == "Doing" ? "Done" : "Renew";
       });
     localStorage.setItem("dataa", JSON.stringify(DataApp));
     setData(datak("dataa", DataApp));
@@ -40,18 +34,15 @@ const App = (props) => {
   }
 
   function search(e) {
-    let valuee = e.target.value.toLowerCase().trim();
-    console.log( datak("dataa",DataApp).dataTask);
-    let temp = datak("dataa",DataApp).dataTask.filter((element) => {
-      let isValid =
-        element.title.toLowerCase().includes(valuee) ||
-        element.name.toLowerCase().includes(valuee) ||
-        element.mess.toLowerCase().includes(valuee) ||
-        element.stt.toLowerCase().includes(valuee);
-      if (isValid) {
-        return element;
-      }
-    });console.log(temp);
+    let valuee = e.toLowerCase().trim();
+    let temp = datak("dataa",DataApp).dataTask.filter((element) => {     
+      return  element.title.toLowerCase().includes(valuee) ||
+              element.name.toLowerCase().includes(valuee)  ||
+              element.mess.toLowerCase().includes(valuee)  ||
+              element.stt.toLowerCase().includes(valuee)   ||
+              element.id.toLowerCase().includes(valuee)     ? element : false;
+    })
+    localStorage.setItem("tempSearch",JSON.stringify(temp))
     setData(datak("tempSearch",temp));
   }
 
@@ -61,23 +52,17 @@ const App = (props) => {
       <Routes>
         <Route path="/learn/" element={<Main btn={btnn} data={data} />}></Route>
         <Route path="/learn/form" element={<Form handle={btn} />} />
-        {DataApp.map((element, index) => (
+        {DataApp.map(({id,title,name,mess,stt,btn}, index) => (
           <Route
             key={index}
-            path={`/learn/${index + 1}`}
+            path={`/learn/${id}`}
             element={
               <Todoitem
-                title={element.title}
-                name={element.name}
-                dess={element.mess}
-                status={element.stt}
-                txtBtn={
-                  (element.btn =
-                    element.stt == "New"
-                      ? "Start"
-                      : element.stt == "Doing"
-                      ? "Done"
-                      : "Renew")
+                title={title}
+                name={name}
+                dess={mess}
+                status={stt}
+                txtBtn={(btn = stt == "New"? "Start" : stt == "Doing" ? "Done" : "Renew")
                 }
               />
             }

@@ -21,47 +21,47 @@ export function datak(datalocal,rootdata){
 
 export function add() {
   return [    
-    // { title: "1", name: "v", mess: "j" , stt: "New"},
-    // { title: "2", name: "v", mess: "j" , stt: "Done"},
-    // { title: "3", name: "v", mess: "j" , stt: "New"},
-    // { title: "4", name: "v", mess: "j" , stt: "New"},
-    // { title: "5", name: "v", mess: "j" , stt: "New"},
-    // { title: "6", name: "v", mess: "j" , stt: "New"},
-    // { title: "7", name: "v", mess: "j" , stt: "New"},
-    // { title: "8", name: "v", mess: "j" , stt: "New"},
-    // { title: "9", name: "v", mess: "j" , stt: "New"},
-    // { title: "10", name: "v", mess: "j" , stt: "New"},
-    // { title: "11", name: "v", mess: "j" , stt: "New"},  
-    // { title: "12", name: "v", stt: "New", mess: "adsasddasdasdasdasdasdasdasda asd asd as asd as as dasd asd asa  asd asd as asd asd as" },
-    // { title: "13", name: "v", mess: "j" , stt: "New"},    
-    // { title: "14", name: "v", mess: "j" , stt: "New"},
-      // { title: "15", name: "v", mess: "j" , stt: "New"}, 
-      // { title: "16", name: "v", mess: "j" , stt: "New"},
-      // { title: "17", name: "v", mess: "j" , stt: "New"},
-      // { title: "18", name: "v", mess: "j" , stt: "New"},
-      // { title: "19", name: "v", mess: "j" , stt: "New"},
-      // { title: "20", name: "v", mess: "j" , stt: "New"},
-      // { title: "21", name: "v", mess: "j" , stt: "New"},
-      // { title: "22", name: "v", mess: "j" , stt: "New"},
-      // { title: "23", name: "v", mess: "j" , stt: "New"},
-      // { title: "24", name: "v", mess: "j" , stt: "New"},
-      // { title: "25", name: "v", mess: "j" , stt: "New"},
-      // { title: "26", name: "v", mess: "j" , stt: "New"},
-      // { title: "27", name: "v", mess: "j" , stt: "New"},
-      // { title: "28", name: "v", mess: "j" , stt: "New"},
-      // { title: "29", name: "v", mess: "j" , stt: "New"},
-      // { title: "30", name: "v", mess: "j" , stt: "New"},    
-      // { title: "31", name: "v", mess: "j" , stt: "New"},    
-      // { title: "32", name: "v", mess: "j" , stt: "New"},    
-      // { title: "33", name: "v", mess: "j" , stt: "New"},    
-      // { title: "34", name: "v", mess: "j" , stt: "New"},
-      // { title: "35", name: "v", mess: "j" , stt: "New"},
-      // { title: "36", name: "v", mess: "j" , stt: "New"},
-      // { title: "37", name: "v", mess: "j" , stt: "New"},
-      // { title: "38", name: "v", mess: "j" , stt: "New"},
-      // { title: "39", name: "v", mess: "j" , stt: "New"},    
-      // { title: "40", name: "v", mess: "j" , stt: "New"},    
-      // { title: "41", name: "v", mess: "j" , stt: "New"},    
+    { title: "1", name: "v", mess: "j" , stt: "New"},
+    { title: "2", name: "v", mess: "j" , stt: "Done"},
+    { title: "3", name: "v", mess: "j" , stt: "New"},
+    { title: "4", name: "v", mess: "j" , stt: "New"},
+    { title: "5", name: "v", mess: "j" , stt: "New"},
+    { title: "6", name: "v", mess: "j" , stt: "New"},
+    { title: "7", name: "v", mess: "j" , stt: "New"},
+    { title: "8", name: "v", mess: "j" , stt: "New"},
+    { title: "9", name: "v", mess: "j" , stt: "New"},
+    { title: "10", name: "v", mess: "j" , stt: "New"},
+    { title: "11", name: "v", mess: "j" , stt: "New"},  
+    { title: "12", name: "v", stt: "New", mess: "adsasddasdasdasdasdasdasdasda asd asd as asd as as dasd asd asa  asd asd as asd asd as" },
+    { title: "13", name: "v", mess: "j" , stt: "New"},    
+    { title: "14", name: "v", mess: "j" , stt: "New"},
+      { title: "15", name: "v", mess: "j" , stt: "New"}, 
+      { title: "16", name: "v", mess: "j" , stt: "New"},
+      { title: "17", name: "v", mess: "j" , stt: "New"},
+      { title: "18", name: "v", mess: "j" , stt: "New"},
+      { title: "19", name: "v", mess: "j" , stt: "New"},
+      { title: "20", name: "v", mess: "j" , stt: "New"},
+      { title: "21", name: "v", mess: "j" , stt: "New"},
+      { title: "22", name: "v", mess: "j" , stt: "New"},
+      { title: "23", name: "v", mess: "j" , stt: "New"},
+      { title: "24", name: "v", mess: "j" , stt: "New"},
+      { title: "25", name: "v", mess: "j" , stt: "New"},
+      { title: "26", name: "v", mess: "j" , stt: "New"},
+      { title: "27", name: "v", mess: "j" , stt: "New"},
+      { title: "28", name: "v", mess: "j" , stt: "New"},
+      { title: "29", name: "v", mess: "j" , stt: "New"},
+      { title: "30", name: "v", mess: "j" , stt: "New"},    
+      { title: "31", name: "v", mess: "j" , stt: "New"},    
+      { title: "32", name: "v", mess: "j" , stt: "New"},    
+      { title: "33", name: "v", mess: "j" , stt: "New"},    
+      { title: "34", name: "v", mess: "j" , stt: "New"},
+      { title: "35", name: "v", mess: "j" , stt: "New"},
+      { title: "36", name: "v", mess: "j" , stt: "New"},
+      { title: "37", name: "v", mess: "j" , stt: "New"},
+      { title: "38", name: "v", mess: "j" , stt: "New"},
+      { title: "39", name: "v", mess: "j" , stt: "New"},    
+      { title: "40", name: "v", mess: "j" , stt: "New"},    
+      { title: "41", name: "v", mess: "j" , stt: "New"},    
       { title: "42", name: "v", mess: "j" , stt: "New"},    
       { title: "43", name: "v", mess: "j" , stt: "New"},
       { title: "44", name: "v", mess: "j" , stt: "New"},
@@ -77,27 +77,11 @@ export function add() {
       { title: "54", name: "v", mess: "j" , stt: "New"},    
       { title: "55", name: "v", mess: "j" , stt: "New"},    
       { title: "56", name: "v", mess: "j" , stt: "New"},    
-    // { title: "57", name: "v",stt: "New", mess: "adsasddasdasdasdasdasdasdasda asd asd as asd as as dasd asd asa  asd asd as asd asd as" },   
+    { title: "57", name: "v",stt: "New", mess: "adsasddasdasdasdasdasdasdasda asd asd as asd as as dasd asd asa  asd asd as asd asd as" },   
    
   ];
 }
-export function runtime(e,temparr){
-  
-  if (e<1){        //nếu trang đứng có index nhỏ hơn 1 thì nó sẽ ẩn đi các button có index<=2 
-     document.querySelectorAll(".check button").forEach((el,indexx)=>{
-          indexx<=2? el.style.display= "block": el.style.display= "none"
-     })
-  }else if (e == temparr.length-1 ){   // nếu index đến giới hạn lớn nhất thì ẩn tất các button trừ 3 nút cuối gần cuối cùng
-      document.querySelectorAll(".check button").forEach((el,indexx)=>{
-          indexx<=temparr.length-4? el.style.display= "none": el.style.display= "block"
-      })
-  }else {     // các trường hợp còn lại của active button thì nó chỉ hiện nút button có index nhỏ hơn 1 đơn vị và button lớn hơn 1 đơn vị 
-      document.querySelectorAll(".check button").forEach((el,indexx)=>{
-          (indexx+2 > e && indexx-2 < e)? el.style.display= "block" : el.style.display= "none"
-      })
-  }
 
-}
 export function makeId(length) {
   let result           = '';
   let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

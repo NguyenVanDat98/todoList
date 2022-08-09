@@ -1,24 +1,23 @@
 import React  from "react";
-import PropTypes from "prop-types";
 import Todoitem from "./todoitem";
 
-const Todolist = (props) => {
-  
-  let data = props.data ? props.data : [];
+const Todolist = ({data,select,eventt,onSelect,dataSelect}) => {
+console.table(data);
 
   return (
     <div id="listToDo"  className="main m-3 flex-wrap">
-      {data.map((arr, i) => (
+      {data && data.map(({id,title,stt,mess,name,btn}, i) => (
         <Todoitem
-          iid={arr.id}
+          iid={id}
           key={i}
-          select={props.select}
-          setevent={props.eventt}
-          title={arr.title}
-          status={arr.stt}
-          dess={arr.mess}
-          name={arr.name}
-          txtBtn={arr.btn}
+          Select={onSelect}
+          select={dataSelect.includes(id)?true:false }
+          setevent={eventt}
+          title={title}
+          status={stt}
+          dess={mess}
+          name={name}
+          txtBtn={btn}
           index={i}
         />
       ))}
@@ -26,6 +25,5 @@ const Todolist = (props) => {
   );
 };
 
-Todolist.propTypes = {};
 
 export default Todolist;

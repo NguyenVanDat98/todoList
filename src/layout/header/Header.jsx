@@ -13,7 +13,7 @@ const Header = (props) => {
          </Link>
       </div>
       <div className="search">
-        <input type="search"  onKeyUp={props.search}  placeholder="Search"/>
+        <input type="search" onChange={(e)=>props.search(e.target.value)}  placeholder="Search"/>
         <button   >Search</button>
       </div>
     </div>
