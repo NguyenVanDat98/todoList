@@ -1,29 +1,33 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import Sidebar from "../../component/sidebar";
 import "../style.css";
 import Todolist from "../../component/todolist";
-import { add, datak } from "../../common/common";
+import { datak, fakeData, URL } from "../../common/common";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer,toast } from "react-toastify";
+
 
 
 const Main = (props) => {
-  // const [change, setchange] = useState(true);
   const [selectItem, setSelect] = useState(false);
+  const [change , set ]=useState(true);
   const [selectLength, setSelectLength] = useState(0);
   const [check, setCheck] = useState([]);
   const [index, setInd] = useState(0);
   const [temparr, settemparr] = useState(props.data.arr);
-
-  let { dataTask: DB, arr: arr } = datak("dataa", add());
-console.table(props.data.dataTask,["id"]);
-
+  let { dataTask: DB, arr: arr } = props.data;
   useEffect(() => {
+    if(props.data){
+
     props.data && props.data.dataTask.map((element, indexs) => {
       element.btn =element.stt == "New" ? "Start": element.stt == "Doing"? "Done": "Renew";
     });
+    setInd(0)
     settemparr(props.data.arr)
-  }, [props.data.arr]);
- 
+    }
+    
+  }, [props.data]);
+
   function Select(e){
     const arrChecked = check;
     let indexChecked = e ;
@@ -34,6 +38,8 @@ console.table(props.data.dataTask,["id"]);
     } else {
       arrChecked.push(indexChecked);
     }
+   
+    setSelect(!selectItem)
     setSelectLength(arrChecked.length)
     setCheck(arrChecked);  
     console.table(arrChecked);      
@@ -41,51 +47,87 @@ console.table(props.data.dataTask,["id"]);
 
   function BackSelect() {
     let trash = datak("trash", []).arr;
-    settemparr(datak("trash", []).arr);
+    settemparr(fakeData([]).arr);
     setCheck([]);
     setSelect(!selectItem);
   }
 
+const taost = () => toast('Delete item Success!', {
+  position: "top-right",
+  autoClose: 1000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: false,
+  progress: undefined,
+  })
   function deleteSelect(){
+
     console.log("delete", check);
     let thumnalDelete=[]
     let thumnaltrash=[]   
     DB.forEach((arr,i)=>{
-       let isvalid = check.includes(arr.id)
-       !isvalid ? thumnalDelete.push( arr):thumnaltrash.push(arr) ;
-    })
-    localStorage.setItem("dataa", JSON.stringify(thumnalDelete));
-    localStorage.setItem("trash", JSON.stringify(thumnaltrash));
-    settemparr(datak("dataa", add()).arr);
 
+       let isvalid = check.includes(arr.id)
+       if(isvalid) {
+        fetch(`${URL}/${arr.id}`,{method:"DELETE"}).then(res=>res.json()).then(re=>{console.log(re,"asd")})
+        fetch(URL).then(res=>res.json()).then(re=>console.log(re))
+       } 
+    })
     setSelect(!selectItem);
     setCheck([]);
     props.btn();
+    taost()
   };
 
  
   ///////change status data item/////
   function settxt(e) {
-      arr[index].map((a, i) => {
-      if (a.id == e) { 
-            switch (a.stt) {
-              case "New":
-                a.stt = "Doing";
-                a.btn = "Done";
-                break;
-              case "Doing":
-                a.stt = "Done";
-                a.btn = "Renew";
-                break;
-              case "Done":
-                a.stt = "New";
-                a.btn = "Doing";
-                break;            
-              
-            }}
-        localStorage.setItem("dataa", JSON.stringify(DB));
-        settemparr(arr)      
-    });
+
+    function checkStatus(a){
+      switch (a) {
+          case "New":
+          return   "Doing";                
+          case "Doing":
+          return "Done";                  
+          case "Done":
+            return "New";  
+    }
+    }
+    function checkBtn(a){
+      switch (a) {
+          case "Start":
+          return "Done";                
+          case "Done":
+          return "Renew";                  
+          case "Renew":
+          return "Start";  
+      
+    }
+    }
+fetch(`${URL}/${e.id}`,{
+  method:"PUT",
+  headers: {
+    Accept : "application/json",
+    "Content-Type": "application/json; charset=UTF-8",
+  },
+  body: JSON.stringify({...e, stt: checkStatus(e.stt), btn: checkBtn(e.btn) })
+}).then(res=>res.json())
+.then(()=>{
+  const updatedTaskList = DB.map((obj) => {
+  
+  if (obj.id === e.id) {
+    obj.stt = checkStatus(e.stt);
+    obj.btn = checkBtn(e.btn);
+    return obj;
+  }
+  return obj;
+});
+
+settemparr(fakeData(updatedTaskList).arr)})
+
+.catch(err=>console.log("Error : ",JSON.stringify(err)))
+
   }
   function filterData(a) {
     const item = DB.filter(function (arr, i) {
@@ -93,15 +135,34 @@ console.table(props.data.dataTask,["id"]);
         return arr;
       }
     });   
-    settemparr(datak(a, item).arr);
+    settemparr(fakeData(item).arr);
     setInd(0);
   }
+
+  window.addEventListener("keyup", (event)=> (event.key=="Shift"&&setSelect(true)))
+
+
   return (
+
     <div
       id="mainContent"
       style={{ display: "flex", minHeight: "100vh" }}
       className="wrap w-100"
-    >
+      >
+    
+    <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        pauseOnHover
+        >      
+        </ToastContainer > 
+      
+       
       <div className="sidebarList">
         <Sidebar handbal={()=>settemparr(arr)} title={"Task All"} />
         <Sidebar handbal={()=>filterData("Done")} title={"Sort Done"} />
@@ -121,7 +182,7 @@ console.table(props.data.dataTask,["id"]);
           style={{ display: selectItem ? "flex" : "none" }}
           className="listButton"
         >
-          <button onClick={deleteSelect}>Detele</button>
+          <button onClick={()=>{check && deleteSelect()}}>Detele</button>
           <button onClick={BackSelect}>Old Step</button>
           <button>Trash</button>
         </div>
@@ -147,9 +208,16 @@ console.table(props.data.dataTask,["id"]);
             Pre
           </button>
           <div className="check mx-auto">
+          <button
+            onClick={()=>{setInd(0);}}
+            disabled={index == 0 ? true : false}
+            style={{display: index < 2 ? "none" : "block", backgroundColor: "#333"}}
+            >
+            {1}
+          </button>
             {temparr.map((arc, i) => (
               <button
-                onClick={()=>{setInd(i); console.log(i);}}
+                onClick={()=>{setInd(i)}}
                 key={i}
                 className={ i ==index ? "active" : ""}
                 style={{ display: index<1?i<=2?"block":"none": index==arr.length-1? i<=arr.length-4 ?"none":"block":i+2>index && i-2<index?"block":"none" }}
@@ -157,8 +225,18 @@ console.table(props.data.dataTask,["id"]);
               >        
                 {i + 1}
               </button>
-            ))}
+            ))
+            }
+            <button
+            onClick={()=>{setInd(temparr.length-1);}}
+            disabled={index == temparr.length - 1 ? true : false}
+            style={{display: index+2 >= temparr.length ? "none" : "block", backgroundColor: "#333"}}
+            >
+            {temparr.length}
+          </button>
           </div>
+
+          
           <button
             onClick={()=>{setInd(index+1);}}
             id="next" 
@@ -166,9 +244,12 @@ console.table(props.data.dataTask,["id"]);
           >
             Next {index + 1}/{temparr.length}
           </button>
+          
+
         </div>
       </div>
     </div>
+    
   );
 };
 

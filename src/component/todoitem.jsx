@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 function Todoitem(props) {
-  const { title, name, dess,setevent,Select,select, status ,txtBtn,iid } = props;
+  const { title, name, mess,setevent,Select,select, stt ,btn,id } = props;
 
   return (
-    <div className={`taskItem mx-2 my-2 px-2 py-2 ${select? "selectItem":""}`} onClick={()=>{Select && Select(iid)}}>
+    <div className={`taskItem mx-2 my-2 px-2 py-2 ${select? "selectItem":""}`} onClick={()=>{Select && Select(id)}}>
       <label>
         Title : <a> {title}</a>
       </label>
@@ -15,15 +15,15 @@ function Todoitem(props) {
       </label>
       <br></br>
       <label>        
-        <b className={status}>Status:{status} </b>
+        <b className={stt}>Stt:{stt} </b>
       </label>
       <br></br>
       <div>        
         Desscription:
-        <p>{dess}</p>
+        <p>{mess}</p>
       </div>
-      <button className={ ` ${status.toLowerCase()}`}  onClick={()=>!Select&& setevent(iid)}>
-        {txtBtn}
+      <button className={ `${ stt && stt.toLowerCase()}`}  onClick={()=>!Select&& setevent({id,stt,title,name,mess,btn})}>
+        {btn}
       </button>
     </div>
   );

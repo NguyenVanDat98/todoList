@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 
 const Header = (props) => { 
 
-//  console.log(props.change);
   return (
     <div className="header  bg-primary justify-content-between">           
       <div className="home">                
