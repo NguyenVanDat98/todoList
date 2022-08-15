@@ -21,7 +21,7 @@ export function datak(datalocal,rootdata){
 }
 export const fakeData =(datae)=> {
   let arr = []
-  const limmit= 12
+  const limmit= 2
   datae && datae.forEach((e, i) => {
       if ((i + 1) % limmit == 0 && i != 0) {
         arr.push(datae.slice(i - (limmit-1), i + 1));
@@ -157,7 +157,7 @@ export function add() {
 
 export function makeId(length) {
   let result           = '';
-  let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789--';
+  let characters       = '0123456789-';
   let charactersLength = characters.length;
   for ( let i = 0; i < length; i++ ) {
     result += characters.charAt(Math.floor(Math.random() * 

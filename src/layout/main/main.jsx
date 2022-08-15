@@ -15,44 +15,50 @@ const Main = (props) => {
   const [check, setCheck] = useState([]);
   const [index, setInd] = useState(0);
   const [temparr, settemparr] = useState(props.data.arr);
-  let { dataTask: DB, arr: arr } = props.data;
+  const [rootData , setR ]=useState();
+  let { dataTask: DB, arr: arr } = (props.data) 
+  
+  
+  useEffect(()=>{
+    props.datafetch()
+  },[selectItem]);
+
   useEffect(() => {
-    if(props.data){
+  
 
     props.data && props.data.dataTask.map((element, indexs) => {
       element.btn =element.stt == "New" ? "Start": element.stt == "Doing"? "Done": "Renew";
     });
     setInd(0)
     settemparr(props.data.arr)
-    }
+  
     
-  }, [props.data]);
+  },[props.data]);
 
   function Select(e){
     const arrChecked = check;
-    let indexChecked = e ;
-    if (arrChecked.includes(indexChecked)) {
+   
+    if (arrChecked.includes(e)) {
       arrChecked.forEach((a, i) => {
-        a === indexChecked && arrChecked.splice(i, 1);
+        a === e && arrChecked.splice(i, 1);
       });
     } else {
-      arrChecked.push(indexChecked);
+      arrChecked.push(e);
     }
    
-    setSelect(!selectItem)
+    // setSelect(!selectItem)
     setSelectLength(arrChecked.length)
     setCheck(arrChecked);  
     console.table(arrChecked);      
   }
 
   function BackSelect() {
-    let trash = datak("trash", []).arr;
     settemparr(fakeData([]).arr);
     setCheck([]);
     setSelect(!selectItem);
   }
 
-const taost = () => toast('Delete item Success!', {
+const taost = (mess) => toast(mess, {
   position: "top-right",
   autoClose: 1000,
   hideProgressBar: false,
@@ -62,25 +68,25 @@ const taost = () => toast('Delete item Success!', {
   progress: undefined,
   })
   function deleteSelect(){
-
-    console.log("delete", check);
-    let thumnalDelete=[]
-    let thumnaltrash=[]   
+    console.log("delete", check);  
     DB.forEach((arr,i)=>{
 
        let isvalid = check.includes(arr.id)
        if(isvalid) {
-        fetch(`${URL}/${arr.id}`,{method:"DELETE"}).then(res=>res.json()).then(re=>{console.log(re,"asd")})
-        fetch(URL).then(res=>res.json()).then(re=>console.log(re))
+        fetch(`${URL}/${arr.id}`,{method:"DELETE"})
        } 
-    })
-    setSelect(!selectItem);
-    setCheck([]);
-    props.btn();
-    taost()
+    })  
+  
+    check.length ? common('Delete item Success!') :common("Có mẹ j đâu mà xóa")
+   
   };
 
+ function common (mess){
+   setSelect(!selectItem);
+    setCheck([]);
  
+  taost(mess)
+ }
   ///////change status data item/////
   function settxt(e) {
 
@@ -211,7 +217,7 @@ settemparr(fakeData(updatedTaskList).arr)})
           <button
             onClick={()=>{setInd(0);}}
             disabled={index == 0 ? true : false}
-            style={{display: index < 2 ? "none" : "block", backgroundColor: "#333"}}
+            style={{display: index <= 1 ? "none" : "block", backgroundColor: "#333"}}
             >
             {1}
           </button>
@@ -230,7 +236,7 @@ settemparr(fakeData(updatedTaskList).arr)})
             <button
             onClick={()=>{setInd(temparr.length-1);}}
             disabled={index == temparr.length - 1 ? true : false}
-            style={{display: index+2 >= temparr.length ? "none" : "block", backgroundColor: "#333"}}
+            style={{display: index >= temparr.length-2 ? "none" : "block", background: "linear-gradient(to right , #333,#fff)"}}
             >
             {temparr.length}
           </button>

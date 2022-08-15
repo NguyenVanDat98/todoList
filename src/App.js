@@ -13,28 +13,29 @@ const UserContext=createContext()
 
 const App = (props) => {
   const [context , setContext ]=useState();
+  const [url , setURl ]=useState(URL);
   const [change, setchange] = useState(true);
   const [dataa , set ] = useState([]);
   const [data, setData ] = useState({dataTask:[],arr:[]});
 
-  const fetchData = useCallback (()=>{
-   ! dataa == data.dataTask &&fetch("http://localhost:3004/TaskList").then((res)=>res.json()).then((res)=>{set(res)})  
-  },[dataa])
+  const fetchData = useCallback (async ()=> await fetch("http://localhost:3004/TaskList")
+  .then(res=>res.json())
+  .then(re=>set(re)  )
 
-      useEffect(()=>{ 
-          fetchData()
-      },[fetchData]);
+  ,[change])
+
+        useEffect(()=>{ 
+          fetchData()            
+        },[fetchData]);
 
       useEffect(()=>{
         setContext(fakeData(dataa))
           setData(fakeData(dataa))
-          console.log(data);
-      },[dataa]);
+      },[dataa||change]);
         
 
   function btn() {
-    setchange(!change);
-    setData(fakeData(data.dataTask));    
+    setchange(!change);   
   }
   function btnn(){
     setData(fakeData(data.dataTask));   
@@ -42,14 +43,17 @@ const App = (props) => {
 
   function search(e) {
     let valuee = e.toLowerCase().trim();
-    let temp = fakeData(dataa).dataTask.filter((element) => {     
-      return  element.title.toLowerCase().includes(valuee) ||
-              element.name.toLowerCase().includes(valuee)  ||
-              element.mess.toLowerCase().includes(valuee)  ||
-              element.stt.toLowerCase().includes(valuee)   ? element : false;
-    })
-    // localStorage.setItem("tempSearch",JSON.stringify(temp))
-    setData(fakeData(temp));
+    fetch(URL+`/?name_like=${valuee}&?q=${valuee}`).then(res=>res.json() ).then(res=>setData(fakeData(res)))
+
+    // let temp = fakeData(dataa).dataTask.filter((element) => {     
+    //   return  element.title.toLowerCase().includes(valuee) ||
+    //           element.name.toLowerCase().includes(valuee)  ||
+    //           element.mess.toLowerCase().includes(valuee)  ||
+    //           element.stt.toLowerCase().includes(valuee)   ? element : false;
+    // })
+    // // console.log(temp);
+    // // localStorage.setItem("tempSearch",JSON.stringify(temp))
+    // setData(fakeData(temp));
 
     
   }
@@ -59,8 +63,10 @@ const App = (props) => {
 
       <UserContext.Provider value={context}>
           <Header search={search} btn={btn} change={change} />
+          
+       { data.dataTask.length < 1 &&   <p>KO CO DaTA</p>}
             <Routes>
-              <Route path="/learn/" element={<Main btn={btnn} data={data} />}></Route>
+              <Route path="/learn/" element={<Main btn={btnn} datafetch={fetchData} data={data} />}></Route>
               <Route path="/learn/form" element={<Form dataApp={data.dataTask} handle={btn} />} />
               {data.dataTask.map(({id,title,name,mess,stt,btn}, index) => (
                 <Route
@@ -78,6 +84,7 @@ const App = (props) => {
                   }
                 />
               ))}
+              
             </Routes>
       </UserContext.Provider>
       

@@ -52,6 +52,7 @@
 }
 .item-input {
   padding-top: 10px;
+  position: relative;
   display: flex;
   align-items: center;
   margin: 5px 20px;
@@ -70,6 +71,10 @@
       font-size: 18px;
       padding: 5px 5px;
       flex-grow: 1;
+    }
+    .mess-error {
+      position: absolute;
+      right: -200px;
     }
 }
 
@@ -99,7 +104,12 @@
     text-align: center;
     flex-direction: column;
     flex-wrap: wrap;
-    margin: 15px auto;
+    margin: 15px auto; 
+    position: unset;
+
+    .mess-error{
+      position: unset;
+    }
   }
 
   .home button {
