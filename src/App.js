@@ -8,6 +8,8 @@ import { Routes, Route } from "react-router-dom";
 import Form from "./component/Form";
 import Todoitem from "./component/todoitem";
 import {fakeData, makeId, URL } from "./common/common";
+import Coust from "./component/coust";
+import storeState from "./store/storeState";
 
 const UserContext=createContext()
 
@@ -18,10 +20,12 @@ const App = (props) => {
   const [dataa , set ] = useState([]);
   const [data, setData ] = useState({dataTask:[],arr:[]});
 
-  const fetchData = useCallback (async ()=> await fetch("http://localhost:3004/TaskList")
+  const fetchData = useCallback ( async ()=> 
+   {    
+    return await fetch("http://localhost:3004/TaskList")
   .then(res=>res.json())
-  .then(re=>set(re)  )
-
+  .then(re=>set(re))
+}
   ,[change])
 
         useEffect(()=>{ 
@@ -43,17 +47,16 @@ const App = (props) => {
 
   function search(e) {
     let valuee = e.toLowerCase().trim();
-    fetch(URL+`/?name_like=${valuee}&?q=${valuee}`).then(res=>res.json() ).then(res=>setData(fakeData(res)))
+    // fetch(URL+`/?name_like=${valuee}&?q=${valuee}`).then(res=>res.json() ).then(res=>setData(fakeData(res)))
 
-    // let temp = fakeData(dataa).dataTask.filter((element) => {     
-    //   return  element.title.toLowerCase().includes(valuee) ||
-    //           element.name.toLowerCase().includes(valuee)  ||
-    //           element.mess.toLowerCase().includes(valuee)  ||
-    //           element.stt.toLowerCase().includes(valuee)   ? element : false;
-    // })
-    // // console.log(temp);
-    // // localStorage.setItem("tempSearch",JSON.stringify(temp))
-    // setData(fakeData(temp));
+    let temp = fakeData(dataa).dataTask.filter((element) => {     
+      return  element.title.toLowerCase().includes(valuee) ||
+              element.name.toLowerCase().includes(valuee)  ||
+              element.mess.toLowerCase().includes(valuee)  ||
+              element.stt.toLowerCase().includes(valuee)   ? element : false;
+    })
+
+    setData(fakeData(temp));
 
     
   }
@@ -84,6 +87,7 @@ const App = (props) => {
                   }
                 />
               ))}
+              <Route path="/learm/" element={<Coust/>}/>
               
             </Routes>
       </UserContext.Provider>

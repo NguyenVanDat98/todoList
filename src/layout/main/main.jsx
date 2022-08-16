@@ -119,6 +119,7 @@ fetch(`${URL}/${e.id}`,{
   },
   body: JSON.stringify({...e, stt: checkStatus(e.stt), btn: checkBtn(e.btn) })
 }).then(res=>res.json())
+
 .then(()=>{
   const updatedTaskList = DB.map((obj) => {
   

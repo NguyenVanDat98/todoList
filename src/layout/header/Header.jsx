@@ -2,6 +2,9 @@ import React   from "react";
 
 import "./StyleHeader.scss";
 import {Link} from 'react-router-dom';
+import storeState from "../../store/storeState";
+import { observer } from "mobx-react"
+
 
 const Header = (props) => { 
 
@@ -12,7 +15,7 @@ const Header = (props) => {
          </Link>
       </div>
       <div className="search">
-        <input type="search" onChange={(e)=>props.search(e.target.value)}  placeholder="Search"/>
+        <input type="search" onChange={(e)=>props.search(e.target.value)}  placeholder={storeState.secondsPassed}/>
         <button   >Search</button>
       </div>
     </div>
@@ -21,4 +24,4 @@ const Header = (props) => {
 
 Header.propTypes = {};
 
-export default Header;
+export default observer(Header);
